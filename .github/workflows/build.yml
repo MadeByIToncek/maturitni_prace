@@ -36,10 +36,15 @@ jobs:
         with:
           name: PDF
           path: maturitni_prace.pdf
+      - name: Move and rename
+        run: |
+          mkdir publish
+          mv maturitni_prace.pdf ./publish/index.pdf
+          echo "<script type="text/javascript"> window.location.href = "/index.pdf"; </script>" > ./publish/index.html
       - name: Upload to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './maturitni_prace.pdf'
+          path: './publish'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
