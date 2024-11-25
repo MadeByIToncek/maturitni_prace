@@ -37,9 +37,9 @@ jobs:
           name: PDF
           path: maturitni_prace.pdf
       - name: Upload to Github Pages
-          uses: actions/upload-pages-artifact@v3
-          with:
-            path: './maturitni_prace.pdf'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './maturitni_prace.pdf'
       - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4
