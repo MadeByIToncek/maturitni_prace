@@ -61,7 +61,7 @@ Největším problémem pro využití Stellaria v produkci videí je fakt, že S
 \[c = (1-t)*a + t * b\] 
 Kde $t$ představuje faktor v intervalu $\langle0;1\rangle$, který postupně interpoluje mezi hodnotami $a$ a $b$. Tento přechod je těžko vizualizovatelný v papírové podobě a je tedy dostupný na \url{https://c.itoncek.space/maturitni_prace/lerp_1}. Tato demonstrace ukazuje hlavní nevýhodu tohoto přístupu. Animace je sice plynulá, ale začátky a konce jsou značně trhané. Ve finálních animacích tedy používáme ještě jeden mezikrok, který vytvoří novou proměnnou $u$ pomocí následující rovnice:
 \[u = (1 - t) * t^2 + t * (1-(1-x)^2))\]
-Tato rovnice by se v kódu dala zjednodušit na kód, který provede lineární interpolaci podle $t$, kde hodnota $a$ bude $t^{2}$ a hodnota $b$ bude $1-(1-t)^{2}$. Tento přechod se často označuje \textit{easeInOutQuad} a jeho hlavní výhodou je jeho relativní plynulost. Kubické a Kvartické ekvivalenty začínají sice plynuleji, ale během cesty naberou mnohem vyšší rychlost a tudíž je nelze jednoduše použít pro plynulé přechody. Rychlost a průběh jednolivých přechodů je porovnána na grafech TODO. 
+Tato rovnice by se v kódu dala zjednodušit na kód, který provede lineární interpolaci podle $t$, kde hodnota $a$ bude $t^{2}$ a hodnota $b$ bude $1-(1-t)^{2}$. Tento přechod se často označuje \textit{easeInOutQuad} a jeho hlavní výhodou je jeho relativní plynulost. Kubické a Kvartické ekvivalenty začínají sice plynuleji, ale během cesty naberou mnohem vyšší rychlost a tudíž je nelze jednoduše použít pro plynulé přechody. Rychlost a průběh jednolivých přechodů je porovnána na grafech \ref{graph:linear_lerp}, TODO a TODO. 
 
 
 \textbf{Stará verze}
@@ -161,6 +161,9 @@ Naše cesta začala v prosinci roku 2021. Zde jsme 14. prosince vydali naše prv
 		\end{tikzpicture}
 		\caption{$\frac{dx}{dt}$ pro základní lineární interpolaci}
 	\end{subfigure}
+	\captionsetup{name=Graf}
+	\caption{Graf znázorňující hodnotu a rychlost změny výstupu základní implementace lineární interpolace}
+	\label{graph:linear_lerp}
 \end{figure}
 
 \end{document}
