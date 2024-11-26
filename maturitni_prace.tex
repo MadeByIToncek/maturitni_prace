@@ -14,8 +14,11 @@
 ]{biblatex}
 \addbibresource{maturitni_prace.bib}
 \usepackage{graphicx}
-\usepackage[]{fancyvrb}
-\usepackage[]{color}
+\usepackage{minted}
+\usepackage{subcaption} %  for subfigures environments 
+%% Some packages you will need
+\usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{url}
 \graphicspath{ {./images/} }
 
@@ -56,7 +59,10 @@ Většina animací, které se v těchto videích nachází, byly vytvořeny pomo
 
 Největším problémem pro využití Stellaria v produkci videí je fakt, že Stellarium není pro tento úkol stavěno. Neexistuje žádná funkce, která by Stellariu řekla \enquote{Otoč se plynule na tyto souřadnice a při tom vytvoř video}. Jediná možnost tvorby videa je export každého snímku finálního jako separátní soubor a tyto jednotlivé soubory poté spojit pomocí nástroje jako FFmpeg. Zde ale vznikne další problém. Tyto jednotlivé snímky musí být rovnoměrně rozloženy po celé trajektorii přechodu. Tento problém je jeden z nejobvyklejších problémů a také důvod, proč jsem přešel od manuálních animací k plně automatizovaným skriptům. Tento problém se nejčastěji řeší pomocí lineární interpolace. Základní rovnici této transformace můžete vidět níže.
 \[c = (1-t)*a + t * b\] 
-Kde $t$ představuje faktor v intervalu $\langle0;1\rangle$, který postupně interpoluje mezi hodnotami $a$ a $b$. Tento přechod je těžko vizualizovatelný v papírové podobě a je tedy dostupný na \url{https://c.itoncek.space/maturitni_prace/lerp_1}
+Kde $t$ představuje faktor v intervalu $\langle0;1\rangle$, který postupně interpoluje mezi hodnotami $a$ a $b$. Tento přechod je těžko vizualizovatelný v papírové podobě a je tedy dostupný na \url{https://c.itoncek.space/maturitni_prace/lerp_1}. Tato demonstrace ukazuje hlavní nevýhodu tohoto přístupu. Animace je sice plynulá, ale začátky a konce jsou značně trhané. Ve finálních animacích tedy používáme ještě jeden mezikrok, který vytvoří novou proměnnou $u$ pomocí následující rovnice:
+\[u = (1 - t) * t^2 + t * (1-(1-x)^2))\]
+Tato rovnice by se v kódu dala zjednodušit na kód, který provede lineární interpolaci podle $t$, kde hodnota $a$ bude $t^{2}$ a hodnota $b$ bude $1-(1-t)^{2}$. Tento přechod se často označuje \textit{easeInOutQuad} a jeho hlavní výhodou je jeho relativní plynulost. Kubické a Kvartické ekvivalenty začínají sice plynuleji, ale během cesty naberou mnohem vyšší rychlost a tudíž je nelze jednoduše použít pro plynulé přechody. Rychlost a průběh jednolivých přechodů je porovnána na grafech TODO. 
+
 
 \textbf{Stará verze}
 
@@ -102,23 +108,59 @@ Naše cesta začala v prosinci roku 2021. Zde jsme 14. prosince vydali naše prv
 \caption{Demonstrace tabulky s informacemi o scénách}
 \label{tab:scenar}
 \end{table}
-\begin{figure}[h]
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{timeline_annotated.eps}
 \caption{Snímek jedné ze scén z finálního videa. Každá důležitá stopa má přiřazené číslo. Vysvětlení v oddílu \ref{makingof:resolve:merging}}
 \label{img:timeline}
 \end{figure}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.5\textwidth]{pointer.eps}
 \caption{Animace zvaná pointer, využívaná pro upřesnění pozice objektu, o kterém v daném momentě mluví scénář.}
 \label{img:pointer}
 \end{figure}
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=.7\textwidth]{prosinec.eps}
 \caption{Demonstrace našeho prvního videa.}
 \label{img:prosinec}
+\end{figure}
+
+\begin{figure}[ht]
+	\begin{subfigure}{0.4\textwidth}
+		\begin{tikzpicture}[scale=0.75]
+			\begin{axis}
+			[
+			    xlabel={x}, 
+			    ylabel={t}, 
+			    xmin=0, 
+			    xmax=1, 
+			    ymin=0, 
+			    ymax=1, 
+			    axis lines=left
+			]
+				\addplot[no marks, solid, domain=0:1, samples=50] {x};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Závislost $x$ na $t$ pro základní lineární interpolaci}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.4\textwidth}
+		\begin{tikzpicture}[scale=0.75]
+			\begin{axis}
+			[
+			    xlabel={x}, 
+			    ylabel={y}, 
+			    axis lines=left
+			]
+				\addplot[no marks, solid, domain=0:1, samples=50] {1};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{$\frac{dy}{dx}$ pro základní lineární interpolaci}
+	\end{subfigure}
 \end{figure}
 
 \end{document}
