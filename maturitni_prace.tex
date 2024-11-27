@@ -61,8 +61,9 @@ Největším problémem pro využití Stellaria v produkci videí je fakt, že S
 \[c = (1-t)*a + t * b\] 
 Kde $t$ představuje faktor v intervalu $\langle0;1\rangle$, který postupně interpoluje mezi hodnotami $a$ a $b$. Tento přechod je těžko vizualizovatelný v papírové podobě a je tedy dostupný na \url{https://c.itoncek.space/maturitni_prace/lerp_1}. Tato demonstrace ukazuje hlavní nevýhodu tohoto přístupu. Animace je sice plynulá, ale začátky a konce jsou značně trhané. Ve finálních animacích tedy používáme ještě jeden mezikrok, který vytvoří novou proměnnou $u$ pomocí následující rovnice:
 \[u = (1 - t) * t^2 + t * (1-(1-x)^2))\]
-Tato rovnice by se v kódu dala zjednodušit na kód, který provede lineární interpolaci podle $t$, kde hodnota $a$ bude $t^{2}$ a hodnota $b$ bude $1-(1-t)^{2}$. Tento přechod se často označuje \textit{easeInOutQuad} a jeho hlavní výhodou je jeho relativní plynulost. Kubické a Kvartické ekvivalenty začínají sice plynuleji, ale během cesty naberou mnohem vyšší rychlost a tudíž je nelze jednoduše použít pro plynulé přechody. Rychlost a průběh jednolivých přechodů je porovnána na grafech \ref{graph:linear_lerp}, TODO a TODO. 
+Tato rovnice by se v kódu dala zjednodušit na kód, který provede lineární interpolaci podle $t$, kde hodnota $a$ bude $t^{2}$ a hodnota $b$ bude $1-(1-t)^{2}$. Tento přechod se často označuje \textit{easeInOutQuad} a jeho hlavní výhodou je jeho relativní plynulost. Průběh a rychlost lineárního a kvadratického přechodu je porovnána na grafech \ref{graph:lerp_linear} a \ref{graph:lerp_quadr}; vizuální reprezentace je dostupná na \url{https://c.itoncek.space/maturitni_prace/lerp_2}. Častými náhradami Kvadratického přechodu jsou Kubické a Kvartické ekvivalenty, které začínají sice plynuleji, ale během cesty naberou výrazně vyšší rychlost, která potenciálně může být nepříjemná pro diváky. Další nevýhodou je relativní složitost vyjádření Kubického a Kvartického přechodu pomocí jednotlivé funkce. Tyto přechody jsou často simulovány spojením dvou identických funkcí v $t=\frac{1}{2}$. Pro náš projekt jsem z těchto důvodů zvolil Kvadratický přechod.
 
+StellariumPanoramaCreator, jak se nazývá nástroj, který jsem pro tento úkol vytvořil, plní úlohu generátoru skriptů. Při svém běhu postupně prochází skrze předprogramované instrukce, které jsou zabudované přímo ve zdrojovém kódu a generuje podle nich řádky skriptu a případné složky, potřebné pro úspěšný běh skriptu. Funkce, které jsou pro tvorbu videí k dispozici jsou obsaženy v tabulce TODO.
 
 \textbf{Stará verze}
 
@@ -162,8 +163,43 @@ Naše cesta začala v prosinci roku 2021. Zde jsme 14. prosince vydali naše prv
 		\caption{$\frac{dx}{dt}$ pro základní lineární interpolaci}
 	\end{subfigure}
 	\captionsetup{name=Graf}
-	\caption{Graf znázorňující hodnotu a rychlost změny výstupu základní implementace lineární interpolace}
-	\label{graph:linear_lerp}
+	\caption{Graf znázorňující hodnotu a rychlost změny výstupu implementace lineární interpolace s kvadratickým přechodem}
+	\label{graph:lerp_linear}
 \end{figure}
 
+\begin{figure}[ht]
+	\begin{subfigure}{0.4\textwidth}
+		\begin{tikzpicture}[scale=0.75]
+			\begin{axis}
+			[
+			    xlabel={$t$}, 
+			    ylabel={$x$}, 
+			    xmin=0, 
+			    xmax=1, 
+			    ymin=0, 
+			    ymax=1, 
+			    axis lines=left
+			]
+				\addplot[no marks, solid, domain=0:1, samples=50] {3*pow(x,2) - 2*pow(x,3)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Závislost $x$ na $t$ pro základní lineární interpolaci}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.4\textwidth}
+		\begin{tikzpicture}[scale=0.75]
+			\begin{axis}
+			[
+			    xlabel={$t$}, 
+			    ylabel={$\frac{dx}{dt}$}, 
+			    axis lines=left
+			]
+				\addplot[no marks, solid, domain=0:1, samples=50] {6*x - 6*pow(x,2)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{$\frac{dx}{dt}$ pro základní lineární interpolaci}
+	\end{subfigure}
+	\captionsetup{name=Graf}
+	\caption{Graf znázorňující hodnotu a rychlost změny výstupu implementace lineární interpolace s kvadratickým přechodem}
+	\label{graph:lerp_quadr}
+\end{figure}
 \end{document}
