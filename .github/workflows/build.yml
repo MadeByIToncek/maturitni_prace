@@ -23,10 +23,14 @@ concurrency:
 
 jobs:
   build_latex:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: "5.32"
+          distribution: strawberry
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
@@ -41,6 +45,7 @@ jobs:
           mkdir publish
           mv maturitni_prace.pdf ./publish/index.pdf
           echo "<script type="text/javascript"> window.location.href = \"./index.pdf\"; </script>" > ./publish/index.html
+      - run: .\count.ps1 > ./publish/stats.txt
       - name: Upload to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:
