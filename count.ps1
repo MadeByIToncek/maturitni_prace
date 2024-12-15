@@ -19,19 +19,19 @@ $wordsincaptions = [int](($wordsplit[2]) -split " ")[0]
 ""
 "Characters in text (normpages)"
 $charsum = $charsintext + $wordsintext
-$charsum.ToString() + "(" + ($charsum/1800).ToString() + ")"
+$charsum.ToString() + " (" + ($charsum/1800).ToString() + ") " + "[" + (($charsum/(20*1800))*100) + "%]"
 
 ""
 "Characters in titles"
 $titlesum = $charsintitles + $wordsintitles
-$titlesum.ToString() + "(" + ($titlesum/1800).ToString() + ")"
+$titlesum.ToString() + " (" + ($titlesum/1800).ToString() + ") " + "[" + (($titlesum/(20*1800))*100) + "%]"
 
 ""
 "Characters in captions"
 $captionsum = $charsincaptions + $wordsincaptions
-$captionsum.ToString() + "(" + ($captionsum/1800).ToString() + ")"
+$captionsum.ToString() + " (" + ($captionsum/1800).ToString() + ") " + "[" + (($captionsum/(20*1800))*100) + "%]"
 
 ""
 "Total"
 $grand_total = $charsum + $titlesum + $captionsum
-$grand_total.ToString() + "(" + ($grand_total/1800).ToString() + ")"
+$grand_total.ToString() + " (" + ($grand_total/1800).ToString() + ") " + "[" + (($grand_total/(20*1800))*100) + "%]"
