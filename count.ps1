@@ -17,7 +17,7 @@ $wordsintitles = [int]$wordsplit[1]
 $wordsincaptions = [int](($wordsplit[2]) -split " ")[0]
 
 ""
-"Characters in text (normpages)"
+"Characters in text (normpages) [% of requirement]"
 $charsum = $charsintext + $wordsintext
 $charsum.ToString() + " (" + ($charsum/1800).ToString() + ") " + "[" + (($charsum/(20*1800))*100) + "%]"
 
