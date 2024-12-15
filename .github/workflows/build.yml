@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir publish
           mv maturitni_prace.pdf ./publish/index.pdf
-          echo "<button onclick=\"pdf\">PDF</button><button onclick=\"stats\">Stats</button><script>function pdf() {window.location.href = \"./index.pdf\";}function stats() {window.location.href = \"./stats.txt\";}</script>" > ./publish/index.html
+          echo "<button onclick=\"pdf()\">PDF</button><button onclick=\"stats()\">Stats</button><script>function pdf() {window.location.href = \"./index.pdf\";}function stats() {window.location.href = \"./stats.txt\";}</script>" > ./publish/index.html
       - name: Generate stats.txt
         run: pwsh ./count.ps1 > ./publish/stats.txt
       - name: Upload to Github Pages
