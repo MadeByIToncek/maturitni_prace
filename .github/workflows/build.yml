@@ -23,10 +23,12 @@ concurrency:
 
 jobs:
   build_latex:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - name: Install Powershell
+        run: sh ./install-pwsh.sh
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
@@ -43,7 +45,7 @@ jobs:
           mv maturitni_prace.pdf ./publish/index.pdf
           echo "<script type="text/javascript"> window.location.href = \"./index.pdf\"; </script>" > ./publish/index.html
       - name: Generate stats.txt
-        run: .\count.ps1 > ./publish/stats.txt
+        run: pwsh ./count.ps1 > ./publish/stats.txt
       - name: Upload to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:

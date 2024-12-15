@@ -1,8 +1,8 @@
 $val = "maturitni_prace.tex"
 echo "Counting character counts for $val"
 
-$chars = perl .\texcount.pl -char -brief .\maturitni_prace.tex
-$words = perl .\texcount.pl -brief .\maturitni_prace.tex
+$chars = perl ./texcount.pl -char -brief $val
+$words = perl ./texcount.pl -brief $val
 
 $sep = "\+"
 
