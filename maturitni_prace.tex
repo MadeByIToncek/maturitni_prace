@@ -95,11 +95,11 @@ Toto video jsem natáčel tak, že jsem namířil Stellarium podobně, jako je n
 \subsection{Jednoduchá éra - Březen až Květen 2022}
 Celý proces, jak jsem ho popsal v sekci \ref{makingof} je aktuálním stavem tvorby. Na úplném začátku produkce tento proces ještě neexistoval a veškeré znalosti potřebné pro tvorbu \textquote{moderních} videí bylo nutné získat postupným experimentováním. Videa v této éře byla velice jednoduchá. Animace byly vytvořeny nahráváním okna Stellaria a jeho ovládáním přes webové rozhraní. 
 
-Ačkoliv tento proces byl jednoduchý na provedení, byl náročný na čas. Pokud jsem vybral špatný objekt, musel jsem se vrátit na předchozí a nahrát celý přechod znovu. Pokud se Stellarium trochu zaseklo někde uprostřed přechodu, musel jsem daný přechod nahrát znovu. Tyto situace se mohou zdát nedůležité, ale při množství přechodů, které v té době ve videích byly, se tyto časové ztráty jednoduše nasčítaly a zpomalily celou produkci videa.
+Ačkoliv tento proces byl jednoduchý na provedení, byl náročný na čas. Pokud jsem vybral špatný objekt, musel jsem se vrátit na předchozí a nahrát celý přechod znovu. Pokud se Stellarium trochu zaseklo někde uprostřed přechodu, musel jsem daný přechod nahrát znovu. Tyto situace se mohou zdát nedůležité, ale při množství přechodů, které v té době ve videích byly, se tyto časové ztráty jednoduše nasčítaly a zpomalily celou produkci videa. Ukázku finálního videa jsem připojil v přílohách jako obrázek \ref{img:brezen}.
 
 Do této kategorie se připletlo ještě video s názvem \textquote{Jak pozorovat zatmění Měsíce 16.5.2022}, které jsme vydali 13. 5. 2022. Toto video je přechodem k další éře, primárně z důvodu, že neobsahuje ani jeden záběr ze Stellaria. Toto video se skládá primárně ze záběrů zatmění měsíce a animace vygenerované pomocí systému Space Engine. Ačkoliv toto video má největší počet shlédnutí na našem YouTube kanálu, má relativně nízký dopad na náš YouTube kanál, jelikož většina těchto shlédnutí je ze stránek astro.cz a seznamzpravy.cz, na které toto video nasdílel Martin Gembec, vedoucí planetária v iQLandii.
 \subsection{Éra spěchu - Červen a Červenec 2022}
-Červnové a červencové Astronomické Desetiminutovky byly stříhány ve velikém spěchu. S příchodem prázdnin se množství volného času, který jsem měl k dispozici na stříhání drasticky snížilo a tudíž bylo třeba produkci optimalizovat. V této době jsem také začal přecházet do nového stříhacího programu, zvaného DaVinci Resolve, který využívám doteď. Tato drastická změna prostředí produkce znamenala, že videa musela být jednodušší na produkci a tudíž kvalita lehce upadla. 
+Červnové a červencové Astronomické Desetiminutovky byly stříhány ve velikém spěchu. S příchodem prázdnin se množství volného času, který jsem měl k dispozici na stříhání drasticky snížilo a tudíž bylo třeba produkci optimalizovat. V této době jsem také začal přecházet do nového stříhacího programu, zvaného DaVinci Resolve, který využívám doteď. Tato drastická změna prostředí produkce znamenala, že videa musela být jednodušší na produkci a tudíž kvalita lehce upadla. Ukázku finálního videa jsem připojil v přílohách jako obrázek \ref{img:cervenec}.
 
 Tato videa jsou jednoduchá, složená z časosběrných záběrů se zvukovým komentářem a občasnými grafikami, vytvořenými ručně ve Stellariu. Tato videa jsou opravdu základní a rád bych je v budoucnu znovu navštívil a pokusil se je předělat na moderní formát. Nicméně tato videa sloužila jako můstek k modernímu procesu tvorby videí, který se poprvé projevil v Únorových Astronomických desetiminutovkách.
 \subsection{Renezance Astrocrew - Únor 2023}
@@ -111,7 +111,7 @@ Zpracování těchto dat bylo mnohem komfortnější než skládání videí nat
 
 Ideálním řešením se ukázalo být webové rozhraní Stellaria. Tento modul je určen pro řízení Stellaria z tabletu nebo jiného počítače v případě, že není možné ovládat počítač se Stellariem. Na pozadí tento systém využívá architektury HTTP, která umožňuje přistupovat k specifickým částem kódu Stellaria přes lokální síť. Tento modul byl vyvinut jako projekt v rámci akce \textquote{ESA Summer of Code 2015}\fcite{stellarium:rcDoc}. 
 
-Dokumentace\fcite{stellarium:rcAPI} tohoto protokolu je bohužel v některých místech relativně chaotická a nečitelná. Pro vývoj jsem tedy použil existující HTML rozhraní a pomocí vývojářských nástrojů, dostupných ve většině moderních prohlížečů, jsem postupně zjistil veškeré adresy a parametry, které mám Stellariu posílat, aby dělalo to, co má. Poté jsem SPC přepsal, aby místo ovládání klávesnice a myši využívalo nově dostupné HTTP dotazy. Po náročné optimalizaci načasování jednotlivých příkazů se časová náročnost snížila přibližně na polovinu předchozího času a celý proces mohl nyní proběhnout na pozadí.
+Dokumentace\fcite{stellarium:rcAPI} tohoto protokolu je bohužel v některých místech relativně chaotická a nečitelná. Pro vývoj jsem tedy použil existující HTML rozhraní a pomocí vývojářských nástrojů, dostupných ve většině moderních prohlížečů, jsem postupně zjistil veškeré adresy a parametry, které mám Stellariu posílat, aby dělalo to, co má. Poté jsem SPC přepsal, aby místo ovládání klávesnice a myši využívalo nově dostupné HTTP dotazy. Po náročné optimalizaci načasování jednotlivých příkazů se časová náročnost snížila přibližně na polovinu předchozího času a celý proces mohl nyní proběhnout na pozadí. Ukázku finálního videa jsem připojil v přílohách jako obrázek \ref{img:unor}.
 
 V této fázi střih probíhal zpět v Adobe Premiere Pro, primárně kvůli pluginu Gopro FX Reframe, který panorámu, kterou jsem vygeneroval v předchozím kroku, převedl na perspektivní zobrazení. Tento systém měl mnoho výhod oproti předchozímu procesu, při kterém bylo nutné perfektně trefit načasování při natáčení a když se něco nepodařilo, bylo nutné celý segment natočit znovu. V této verzi procesu stačilo přeanimovat poslední přechod a upravit časování sekvence a problém byl vyřešen. I tak, tento postup nesl značné nevýhody. Hlavní z nich byla neskutečná zátěž systému, z části podpořena i přirozená zátěž samotného Premiere. Tento fakt znamenal, že export Únorových Astronomických Desetiminutovek zabral 90 minut na 12 minut videa. V říjnu 2023 se navíc tento plugin kompletně rozpadl a úplně přestal fungovat, což prakticky zrušilo Říjnové Astronomické Desetiminutovky. Proto pro následující projekt bylo nutné vyvinout nový proces. 
 \subsection{Moderní Astrocrew - Rok 2024, Prosinec 2024 a Rok 2025}
@@ -157,6 +157,28 @@ Tímto způsobem bylo vytvořeno video \textquote{Co nás čeká na obloze v roc
 \includegraphics[width=.7\textwidth]{prosinec.eps}
 \caption{Demonstrace našeho prvního videa.}
 \label{img:prosinec}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.85\textwidth]{brezen.png}
+\caption{Demonstrace našeho prvního videa.}
+\label{img:brezen}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.85\textwidth]{cervenec.png}
+\caption{Demonstrace našeho prvního videa.}
+\label{img:cervenec}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.85\textwidth]{unor.png}
+\caption{Demonstrace našeho prvního videa.}
+\label{img:unor}
 \end{figure}
 
 \begin{figure}[ht]
