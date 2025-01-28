@@ -84,8 +84,10 @@ Základní misí skupiny AstroCrew je zpřístupnit astronomii široké veřejno
 
 Téma tvorby astronomických videí jsem si vybral hlavně kvůli jeho obsáhlosti. V rámci produkce nejen programuji nástroje, ale následně pomocí nich animuji scénu a výsledná data nakonec přetvářím ve finální video. Tento fakt je dále podpořen Tato práce se zaměřuje spíše na mojí část práce na produkci videa a ostatní části produkce nebudou zastoupeny nijak výrazně. 
 \section{Postup vytváření videa}\label{makingof}
-\subsection{Příprava textových a zvukových podkladů}
+\subsection{Příprava textových a zvukových podkladů}\label{makingof:text-audio-prep}
 Téma nadcházejícího videa je většinou rozhodnuto několik měsíců dopředu. Prvním krokem je sepsání scénáře naším scénáristou Danem Kurtinem. V případě posledního videa, týkajícího se úkazů na noční obloze v roce 2025 byla hlavním bodem diskuze délka videa a které úkazy do videa zahrneme a které budeme nuceni přeskočit.
+
+Po dokončení scénáře přijde na řadu samotné nahrávání. Proces nahrávání se liší od projektu k projektu, ale pro obě videa, řešená touto projektovou maturitní prací byl proces víceméně stejný. Z časových důvodů na straně Terky, byla obě videa nahrávána na standardní mobilní telefon. U prosicnového videa jsem měl problém s šumem na pozadí nahrávky a tak jsem dal Terce několik tipů pro projekt Rok 2025. Jedním z těchto tipů bylo postavení \enquote{peřinového bunkru} a nahrávání uvnitř. Tento jednoduchý tip výrazně snížila hranice šumu, jak ukazuje frekvenční analýza na obrázku~\ref{img:fourier}.
 \subsection{Animování oblohy v programu Stellárium}\label{makingof:stellarium}
 Celý proces začíná se scénářem. Ze scénáře si vypíši seznam přechodů a jednotlivých scén. Pro tento úkol jsem si vytvořil speciální formát zápisu, který zachytává vše, co budu potřebovat k vytvoření každého přechodu ve videu. Viz tabulka~\ref{tab:scenar}.
 
@@ -159,54 +161,58 @@ Tímto způsobem bylo vytvořeno video \textquote{Co nás čeká na obloze v roc
 \part{Praktická část}
 \newpage
 \part{Přílohy}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{fourier.png}
+	\caption{Porovnání šumové stopy projektu Rok 2025 (vlevo) a projektu Prosinec (vpravo). Vysvětleno v oddílu \ref{makingof:text-audio-prep}}\label{img:fourier}
+\end{figure}
 \begin{table}[h]
-\centering
-\begin{tabularx}{\linewidth}{lc*{5}{>{\RaggedRight\arraybackslash}X}}
-\toprule
-\# scény    & Směr scény & Čas          & Souhvězdí         & Speciální objekty      \\ \midrule
-0000        & Z obzor    & západ slunce & Labuť, Lyra, Orel & Letní trojúhelník      \\ \addlinespace
-0001        & SZ obzor   & západ slunce & dtto, Herkules    & Herkulův květináč, M13 \\ \addlinespace
-0002        & Z obzor    & západ slunce & dtto              & ---                    \\ \addlinespace
-\ldots      & \ldots     & \ldots       & \ldots            & \ldots                 \\ \bottomrule
-\end{tabularx}
-\caption{Demonstrace tabulky s informacemi o scénách}\label{tab:scenar}
-\end{table}
-
+	\centering
+	\begin{tabularx}{\linewidth}{lc*{5}{>{\RaggedRight\arraybackslash}X}}
+	\toprule
+	\# scény    & Směr scény & Čas          & Souhvězdí         & Speciální objekty      \\ \midrule
+	0000        & Z obzor    & západ slunce & Labuť, Lyra, Orel & Letní trojúhelník      \\ \addlinespace
+	0001        & SZ obzor   & západ slunce & dtto, Herkules    & Herkulův květináč, M13 \\ \addlinespace
+	0002        & Z obzor    & západ slunce & dtto              & ---                    \\ \addlinespace
+	\ldots      & \ldots     & \ldots       & \ldots            & \ldots                 \\ \bottomrule
+	\end{tabularx}
+	\caption{Demonstrace tabulky s informacemi o scénách}\label{tab:scenar}
+\end{table}		
 \begin{figure}[ht]
-\centering
-\includegraphics[width=1\textwidth]{timeline_annotated.eps}
-\caption{Snímek jedné ze scén z finálního videa. Každá důležitá stopa má přiřazené číslo. Vysvětlení v oddílu~\ref{makingof:resolve:merging}}\label{img:timeline}
+	\centering
+	\includegraphics[width=1\textwidth]{timeline_annotated.eps}
+	\caption{Snímek jedné ze scén z finálního videa. Každá důležitá stopa má přiřazené číslo. Vysvětleno v oddílu~\ref{makingof:resolve:merging}}\label{img:timeline}
 \end{figure}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.5\textwidth]{pointer.eps}
-\caption{Animace zvaná pointer, využívaná pro upřesnění pozice objektu, o kterém v daném momentě mluví scénář.}\label{img:pointer}
+	\centering
+	\includegraphics[width=.5\textwidth]{pointer.eps}
+	\caption{Animace zvaná pointer, využívaná pro upřesnění pozice objektu, o kterém v daném momentě mluví scénář.}\label{img:pointer}
 \end{figure}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.7\textwidth]{prosinec.eps}
-\caption{Demonstrace našeho prvního videa.}\label{img:prosinec}
+	\centering
+	\includegraphics[width=.7\textwidth]{prosinec.eps}
+	\caption{Demonstrace našeho prvního videa.}\label{img:prosinec}
 \end{figure}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.85\textwidth]{brezen.png}
-\caption{Demonstrace našeho prvního videa.}\label{img:brezen}
+	\centering
+	\includegraphics[width=.85\textwidth]{brezen.png}
+	\caption{Demonstrace našeho prvního videa.}\label{img:brezen}
 \end{figure}
 
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.85\textwidth]{cervenec.png}
-\caption{Demonstrace našeho prvního videa.}\label{img:cervenec}
+	\centering
+	\includegraphics[width=.85\textwidth]{cervenec.png}
+	\caption{Demonstrace našeho prvního videa.}\label{img:cervenec}
 \end{figure}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.85\textwidth]{unor.png}
-\caption{Demonstrace našeho prvního videa.}\label{img:unor}
+	\centering
+	\includegraphics[width=.85\textwidth]{unor.png}
+	\caption{Demonstrace našeho prvního videa.}\label{img:unor}
 \end{figure}
 
 \begin{figure}[ht]
