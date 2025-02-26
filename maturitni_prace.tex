@@ -136,102 +136,15 @@ Zbývající 3 dimenze představuje ohnisková vzdálenost, čas a datum. V tomt
 
 Nyní, když máme matematicky definované počáteční a koncové snímky přechodů, můžeme využít rovnici lineární interpolace k vytvoření snímků, které leží mezi těmito limitními hranicemi.
 \[c = (1-t)*a + t * b\] 
-Tato rovnice převede každou hodnotu mezi $t=0$ (začátek přechodu) a $t=1$ (konec přechodu) na hodnotu, která leží na úsečce $\overleftrightarrow{AB}$, kde bod $A$ definujeme jako počáteční bod a bod $B$ jako koncový bod. Poté pomocí lineární interpolace vypočítáme vektory jednotlivých snímků v přechodu a tyto vektory uložíme.
+Tato rovnice převede každou hodnotu mezi $t=0$ (začátek přechodu) a $t=1$ (konec přechodu) na hodnotu, která leží na úsečce $\overleftrightarrow{AB}$, kde bod $A$ definujeme jako počáteční bod a bod $B$ jako koncový bod. Tato rovnice se často nazývá \textit{lerp(a,b,t)} a tuto definici budu po zbytek této kapitoly používat. Poté pomocí lineární interpolace vypočítáme vektory jednotlivých snímků v přechodu a tyto vektory uložíme.%chktex 36
 
-\textcolor{red}{REMOVE (or whatever)}
+Tato animace je v dříve zmíněné ukázce označena tlačítkem \enquote{Lineární přechod}. Animace je zde sice plynulá, ale začátky a konce jsou trhané. Z tohoto důvodu vstupní faktor $t$ nejdříve přetransformuji. 
 
-Tyto snímky musí být umístěné na linii mezi počátečním ($a$) a koncovým ($b$) bodem přechodu. 
-Kde $t$ představuje parametr v intervalu $\langle0;1\rangle$, který plynule přechází mezi hodnotami $0$ a $1$. Výsledkem této rovnice je hodnota $c$, která reprezentuje hodnotu mezi počátečním a koncovým bodem v závislosti na parametru $t$. Tento přechod je těžko vizualizovatelný v papírové podobě a je tedy dostupný na \url{https://c.itoncek.space/maturitni_prace/lerp_1}.
+Zde se přístupy rozdělují, jelikož je několik způsobů, jak tuto mezitransformaci provést. První variantou je kvadratický přechod. Zde faktor $t$ upravíme pomocí rovnice $lerp({x}^{2}, inv({inv}^{2}(x)), x)$, kde \textit{inv(x) = 1-x}. Výsledný přechod začíná a končí výrazně plynuleji. V ukázce je tato animace označena tlačítkem \enquote{Kvadratický přechod} %chktex 36 %chktex 9 %chktex 15
 
-Z demonstrace je zřejmá hlavní nevýhoda tohoto přístupu. Animace je sice plynulá, ale začátky a konce jsou trhané. Ve finálních animacích tedy používám ještě jeden mezikrok, který nám pomůže vytvořit plynulý začátek i konec přechodu.
+Častými náhradami kvadratického přechodu je přechod kvartický nebo exponenciální. Oba které začínají sice plynuleji, ale během cesty naberou výrazně vyšší rychlost, která může být potenciálně nepříjemná pro diváky. Další nevýhodou je relativní složitost vyjádření kubického a kvartického přechodu pomocí jednotlivé funkce. Tyto přechody jsou často simulovány spojením dvou identických funkcí v $t=\frac{1}{2}$. Obě dvě animace naleznete ve výše zmíněné ukázce pod tlačítky \enquote{Kvartický přechod} a \enquote{Expo.\ přechod}.
 
-vyřešit
-
-Pro dosažení požadované plynulosti využívám metodu~\textit{easeInOutQuad()}, která vstupní hodnotu $t$ přetranformuje na kubickou rovnici, jejíž rychlost (první derivace) představuje perfektní parabolu. %chktex 36
-
-Průběh a plynulost lineárního a kvadratického přechodu je porovnána na grafech~\ref{graph:lerp_linear} a~\ref{graph:lerp_quadr}; vizuální reprezentace je dostupná na \url{https://c.itoncek.space/maturitni_prace/lerp_2}.
-
-\begin{figure}[H]
-	\begin{subfigure}{0.43\textwidth}
-		\begin{tikzpicture}[scale=0.75]
-			\begin{axis}
-			[
-			    xlabel={$t$}, 
-			    ylabel={$x$}, 
-			    xmin=0, 
-			    xmax=1, 
-			    ymin=0, 
-			    ymax=1, 
-			    axis lines=left
-			]
-				\addplot[no marks, solid, domain=0:1, samples=50] {x};
-			\end{axis}
-		\end{tikzpicture}
-		\caption{Závislost $x$ na $t$ pro základní lineární interpolaci}
-	\end{subfigure}\hfill
-	\begin{subfigure}{0.44\textwidth}
-		\begin{tikzpicture}[scale=0.75]
-			\begin{axis}
-			[
-			    xlabel={$t$}, 
-			    ylabel={$\frac{dx}{dt}$}, 
-			    xmin=0, 
-			    xmax=1, 
-			    ymin=0.8, 
-			    ymax=1.2, 
-			    axis lines=left
-			]
-				\addplot[no marks, solid, domain=0:1, samples=50] {1};
-			\end{axis}
-		\end{tikzpicture}
-		\caption{$\frac{dx}{dt}$ pro základní lineární interpolaci}
-	\end{subfigure}
-	\captionsetup{name=Graf}
-	\caption{Graf znázorňující hodnotu a rychlost změny výstupu implementace lineární interpolace s kvadratickým přechodem}\label{graph:lerp_linear}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{subfigure}{0.43\textwidth}
-		\begin{tikzpicture}[scale=0.75]
-			\begin{axis}
-			[
-			    xlabel={$t$}, 
-			    ylabel={$x$}, 
-			    xmin=0, 
-			    xmax=1, 
-			    ymin=0, 
-			    ymax=1, 
-			    axis lines=left
-			]
-				\addplot[no marks, solid, domain=0:1, samples=50] {3*pow(x,2) - 2*pow(x,3)};
-			\end{axis}
-		\end{tikzpicture}
-		\caption{Závislost $x$ na $t$ pro základní lineární interpolaci}
-	\end{subfigure}\hfill
-	\begin{subfigure}{0.44\textwidth}
-		\begin{tikzpicture}[scale=0.75]
-			\begin{axis}
-			[
-			    xlabel={$t$}, 
-			    ylabel={$\frac{dx}{dt}$}, 
-			    xmin=0, 
-			    xmax=1, 
-			    ymin=0, 
-			    ymax=1.8, 
-			    axis lines=left
-			]
-				\addplot[no marks, solid, domain=0:1, samples=50] {6*x - 6*pow(x,2)};
-			\end{axis}
-		\end{tikzpicture}
-		\caption{$\frac{dx}{dt}$ pro základní lineární interpolaci}
-	\end{subfigure}
-	\captionsetup{name=Graf}
-	\caption{Graf znázorňující hodnotu a rychlost změny výstupu implementace lineární interpolace s kvadratickým přechodem}\label{graph:lerp_quadr}
-\end{figure}
-
-Častými náhradami kvadratického přechodu jsou kubické a kvartické ekvivalenty, které začínají sice plynuleji, ale během cesty naberou výrazně vyšší rychlost, která může být potenciálně nepříjemná pro diváky. Další nevýhodou je relativní složitost vyjádření kubického a kvartického přechodu pomocí jednotlivé funkce. Tyto přechody jsou často simulovány spojením dvou kubických nebo kvartických funkcí v $t=\frac{1}{2}$.
-
-\textcolor{red}{Kam zmizela sekce?}
+Nyní, když máme trajektorie definovány matematicky, můžeme na nich rozmístit požadované množství snímků. Pro většinu animací v našich videích používáme násobky 500 snímků (10s finálního videa).
 
 Nástroj StellariumPanoramaCreator, který jsem pro tento úkol vytvořil, plní úlohu generátoru skriptů. Ve skriptu je předem definováno, jaké kroky má Stellarium provést. Je volně dostupný na adrese \url{https://github.com/IToncek/StellariumPanoramaCreator}. Při svém běhu postupně prochází skrze předprogramované instrukce, které jsou zabudované přímo ve zdrojovém kódu a generuje podle nich řádky skriptu a případné složky, potřebné pro úspěšný běh skriptu. Mezi funkcemi, které často využívám se nachází například funkce \textit{setup()}. Připraví Stellarium pro zaznamenávání videa (vypne veškerá překrytí, změní model atmosféry, skryje objekty Sluneční soustavy, \ldots). Funkce \textit{move()}, která otočí kameru na pozici dodanou v parametru \textit{orientation}, nastaví datum a čas dodaný v parametru \textit{datetime}. Další využívanou funkcí je \textit{cheese()}, která pořídí snímek v aktuální orientaci a uloží ho ve formátu TIFF.% chktex 36
 

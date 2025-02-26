@@ -122,7 +122,7 @@ offset_top = -1.0
 offset_right = 9.0
 offset_bottom = 1.0
 
-[node name="TouchDetector" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("group", "cursor", "camera")]
+[node name="TouchDetector" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("group", "cursor", "camera", "timer")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -131,6 +131,7 @@ script = ExtResource("1_2ncuh")
 group = NodePath("../Group")
 cursor = NodePath("../Group/Cursor")
 camera = NodePath("../../Camera3D")
+timer = NodePath("../Timer")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 1425.0
@@ -140,7 +141,45 @@ offset_bottom = 1070.0
 text = "Foto: Daniel Kurtin (scénárista AstroCrew)"
 label_settings = SubResource("LabelSettings_jxdg8")
 
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 8.0
+autostart = true
+
+[node name="Animace 1" type="Button" parent="CanvasLayer"]
+offset_left = 10.0
+offset_top = 316.0
+offset_right = 156.0
+offset_bottom = 347.0
+text = "Lineární přechod"
+
+[node name="Animace 2" type="Button" parent="CanvasLayer"]
+offset_left = 160.0
+offset_top = 316.0
+offset_right = 333.0
+offset_bottom = 347.0
+text = "Kvadratický přechod"
+
+[node name="Animace 3" type="Button" parent="CanvasLayer"]
+offset_left = 337.0
+offset_top = 316.0
+offset_right = 488.0
+offset_bottom = 347.0
+text = "Kvartický přechod"
+
+[node name="Animace 4" type="Button" parent="CanvasLayer"]
+offset_left = 492.0
+offset_top = 316.0
+offset_right = 610.0
+offset_bottom = 347.0
+text = "Expo. přechod"
+
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmbo5")
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer/TouchDetector" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Animace 1" to="CanvasLayer/TouchDetector" method="changeToAnim1"]
+[connection signal="pressed" from="CanvasLayer/Animace 2" to="CanvasLayer/TouchDetector" method="changeToAnim2"]
+[connection signal="pressed" from="CanvasLayer/Animace 3" to="CanvasLayer/TouchDetector" method="changeToAnim3"]
+[connection signal="pressed" from="CanvasLayer/Animace 4" to="CanvasLayer/TouchDetector" method="changeToAnim4"]

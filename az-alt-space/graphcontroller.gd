@@ -3,7 +3,9 @@ extends Control
 @export var group : Control;
 @export var cursor : Control;
 @export var camera : Camera3D;
+@export var timer : Timer;
 
+var animating = false;
 var dragging = false
 var topleft;
 var bottomright;
@@ -13,24 +15,26 @@ func _ready() -> void:
 	topleft = group.position;
 	bottomright = topleft + group.size;
 	midpoint = (bottomright + topleft)/2;
-	upudate(midpoint);
+	
+	update(midpoint);
 	pass
 
 func _input(event):
-	if event is InputEventMouseMotion and dragging:
-		upudate(event.position);
-	# While dragging, move the sprite with the mouse.
-			
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if(event.position.x > topleft.x && event.position.x <  bottomright.x && event.position.y > topleft.y && event.position.y < bottomright.y):
-			if not dragging and event.pressed:
-				dragging = true
-			
-		if dragging and not event.pressed:
-			dragging = false
+	if not animating:
+		if event is InputEventMouseMotion and dragging:
+			update(event.position);
+		# While dragging, move the sprite with the mouse.
+				
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if(event.position.x > topleft.x && event.position.x <  bottomright.x && event.position.y > topleft.y && event.position.y < bottomright.y):
+				if not dragging and event.pressed:
+					dragging = true
+				
+			if dragging and not event.pressed:
+				dragging = false
 
 
-func upudate(position: Vector2):
+func update(position: Vector2):
 	var pos;
 	if(position.x > topleft.x && position.x <  bottomright.x && position.y > topleft.y && position.y < bottomright.y):
 		pos = position;
@@ -40,6 +44,7 @@ func upudate(position: Vector2):
 	cursor.position = pos - Vector2(10,10);
 	var absolutePos = linear_remap_vec(pos - midpoint + Vector2(10,10),Vector2(290,140),Vector2(-290,-140), Vector2(-180,-90),Vector2(180,90));
 	camera.rotation_degrees = Vector3(absolutePos.y,absolutePos.x,0)
+	#print(camera.rotation_degrees);
 	pass
 
 
@@ -85,3 +90,47 @@ func linear_remap(value, leftMin, leftMax, rightMin, rightMax):
 
 	# Convert the 0-1 range into a value in the right range.
 	return rightMin + (valueScaled * rightSpan)
+
+func changeToAnim1():
+	anim(Tween.TRANS_LINEAR);
+
+func changeToAnim2():
+	anim(Tween.TRANS_QUAD);
+	
+func changeToAnim3():
+	anim(Tween.TRANS_QUART);
+	
+func changeToAnim4():
+	anim(Tween.TRANS_EXPO);
+
+func anim(trans:Tween.TransitionType):
+	if not animating:
+		animating = true;
+		$"../Animace 1".disabled = true;
+		$"../Animace 2".disabled = true;
+		$"../Animace 3".disabled = true;
+		$"../Animace 4".disabled = true;
+		var tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(trans);
+		
+		camera.rotation_degrees = Vector3(10.92857, 166.9655,0);
+		
+		tween.tween_property(camera,"rotation_degrees",Vector3(83.25282, -160.2069,0),10);
+		tween.finished.connect(func():
+			animating = false;
+			$"../Animace 1".disabled = false;
+			$"../Animace 2".disabled = false;
+			$"../Animace 3".disabled = false;
+			$"../Animace 4".disabled = false;
+		);
+		tween.pause();
+		await get_tree().create_timer(1).timeout;
+		tween.play();
+	
+
+func _process(delta: float) -> void:
+	if animating:
+		#var absolutePos = linear_remap_vec(pos - midpoint + Vector2(10,10),Vector2(290,140),Vector2(-290,-140), Vector2(-180,-90),Vector2(180,90));
+		var relativePos = linear_remap_vec(Vector2(camera.rotation_degrees.y, camera.rotation_degrees.x),Vector2(-180,-90), Vector2(180,90), Vector2(290,140),Vector2(-290,-140));
+		relativePos += midpoint + Vector2(10,10);
+		cursor.position = relativePos;
+		pass
