@@ -1,5 +1,5 @@
 $val = "maturitni_prace.tex"
-echo "Counting character counts for $val"
+"Counting character counts for $val"
 
 $chars = perl ./texcount.pl -char -sub=part $val
 $words = perl ./texcount.pl -sub=part $val
@@ -21,7 +21,6 @@ foreach ($i in $loop) {
     $ws = $words -split $sep
     $wordsplit = $ws[[int]$i] -split $sep2
     $wordsintext = [int]$wordsplit[0]
-    $partName = (($charsplit[2]) -split " ")[1]
 
     $charsum = $charsintext + $wordsintext
 
@@ -48,4 +47,6 @@ foreach ($i in $loop) {
 
 $a += [pscustomobject]@{PartName = "<total>"; CharsInText = $totalchars; NormPagesFinished = "{0:f2}" -f ($totalchars/1800); PercentFinished = "{0:p}" -f (($totalchars) / (1800*20))}
 
-$a | Format-Table
+$v = ($a | Format-Table -AutoSize)
+$OutputEncoding = [Text.Encoding]::ASCII
+$v

@@ -1,6 +1,5 @@
 \documentclass[12pt,a4paper,titlepage]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{csquotes}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -26,6 +25,7 @@
 \fontfamily{ptm}
 \usepackage{tabularx,ragged2e,booktabs}
 \usepackage{hyperref}
+\usepackage{csquotes}
 \usepackage{xurl}
 
 \DeclareBibliographyCategory{skipbibliography}
@@ -251,11 +251,29 @@ Prosincové video je druhé video na našem kanále, které bylo renderováno po
 
 U předchozího videa ze série Astronomických desetiminutovek jsem ještě využíval celooblohových panorám a~pluginu Gopro FX Reframe. Prosincové Astronomické desetiminutovky byly tudíž novým milníkem v~produkci.
 
-Prvním momentem, kdy se celá produkce změnila byla scéna v~čase 2:55, kdy jsem potřeboval zvýraznit jedno ze souhvězdí (viz obrázek~\ref{prac:ac12_1}). V~předchozích videích jsem těchto efektů dosahoval pomocí maskování nepotřebných částí ve stříhacím programu. 
+Prvním momentem, kdy se celá produkce změnila byla scéna v~čase 2:55, kdy jsem potřeboval zvýraznit jedno ze souhvězdí (viz obrázek~\ref{prac:ac12_1}). V~předchozích videích jsem těchto efektů dosahoval pomocí maskování nepotřebných částí ve stříhacím programu. Takto jsem mohl vytvořit jeden snímek, který zachycoval všechna souhvězdí a poté je jednotlivě maskovat v editoru. Podobný postup jsem tedy využil i poté, co jsem se zbavil celooblohového fotografování
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.85\textwidth]{ac12_1.png}
+	\includegraphics[width=.95\textwidth]{ac12_1.png}
 	\caption{Demonstrace problematické scény z Prosincových Astronomických desetiminutovek.}\label{prac:ac12_1}
 \end{figure}
+
+Ačkoliv mi tento postup umožňoval větší kontrolu nad výsledným záběrem v editoru. Jeho nepraktičnost se ukázala v momentě, kdy jsem byl nucen scénu mírně pootočit kvůli chybě ve výpočtu data ve skriptu a byl jsem tedy nucen masku, kterou jsem již pečlivě naanimoval pro každé souhvězdí zvlášť během dalšího přechodu celou předělat.
+
+V ten moment jsem se zamyslel, jestli by to nešlo udělat nějak lépe a napadlo mě, vyexportovat ze Stellaria jen potřebná souhvězdí a zbytek skrýt. Ukázalo se, že Stellarium má pro tento účel marker \textit{FlagIsolateSelected}, který umožní Stellariu renderovat pouze souhvězdí, která předem vyberu pomocí \textit{core.\-select\-Constellation\-By\-Name(name)}. Tato malá změna z pohledu diváka mi ušetřila nespočet hodin animování masek pro celé video. %chktex 36
+
+Novinkou pro toto video byl také způsob zapracování objektů hlubokého vesmíru do jednotlivých záběrů. S tímto konceptem jsem si hrál i u zrušených říjnových Astronomických desetiminutovek, kde jsem dostal nápad, smíchat obrázky objektů hlubokého vesmíru s daty ze Stellaria. První snímek, který takto vznikl, můžete vidět jako obrázek~\ref{prac:ac12_2}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.95\textwidth]{ac12_2.png}
+	\caption{První snímek s mixovanými objekty hlubokého vesmíru a dat ze stellaria, zpracování: Zoner Photo Studio X.}\label{prac:ac12_2}
+\end{figure}
+
+Tohoto efektu dosáhneme pomocí míchání metodou Lighten, kde zvolíme nejjasnější barvu každého pixelu z vrstev níže. Vstupní snímky, pokud se nejedná o snímky kulových hvězdokup, nejdříve zpracuji pomocí Starnet++, který ze snímků odstraní hvězdy. Následně vyčistím pozadí daného snímku, aby bylo co nejtmavší, jak je to možné. Tuto část snímku chceme odstranit a proto potřebujeme, aby ji metoda Lighten nikdy nevybrala, proto se snažím zajistit, aby měly tyto pixely co nejtmavší barvu. Následně do snímku vrátím některé hvězdy, které nezasahují do pozadí (Například u snímku~\ref{prac:ac12_2} bílého trpaslíka uprostřed mlhoviny).
+
+Poslední krok je zarovnání snímku na místo, kde se na obloze nachází v realitě a pomalé prolnutí, využívající neschopnosti diváka všimnout si pomalých změn.
+
+Tento typ zpracování obrázků dostal podporu od zbytku týmu a nyní ho využíváme pro většinu objektů hlubokého vesmíru.
 \end{document}
