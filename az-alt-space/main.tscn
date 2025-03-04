@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b46ltu7wn2v33"]
 
-[ext_resource type="Script" path="res://graphcontroller.gd" id="1_2ncuh"]
+[ext_resource type="Script" uid="uid://dhml7vd5d3id5" path="res://graphcontroller.gd" id="1_2ncuh"]
 [ext_resource type="Texture2D" uid="uid://cqmtv2j4tndf7" path="res://panorama.jpg" id="2_2x24h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxdg8"]
