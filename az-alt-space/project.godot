@@ -28,6 +28,9 @@ project/assembly_name="Azimuth - Altitude space"
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
+textures/lossless_compression/force_png=true
+textures/decals/filter=5
+textures/light_projectors/filter=5
