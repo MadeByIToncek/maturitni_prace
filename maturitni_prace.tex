@@ -166,30 +166,46 @@ Při kompilaci jednotlivých snímků do videí nastavuji finální snímkovací
 
 Pro video o~\enquote{Úkazech na obloze v~roce 2025} jsem zvolil trochu jiný postup. Přechody ukládám ve formátu JPEG2000, který používá ztrátovou kompresi. Celé video je tak možné na konci procesu vyrendrovat znova a~opravit případné drobné detaily, které ve videu mohly vziknout v~průběhu jeho tvorby.\fcite{jpeg2000}
 \subsection{Kompletace videa v~programu DaVinci Resolve}\label{makingof:resolve}
-\subsubsection{Spojování jednotlivých částí}\label{makingof:resolve:merging}
+\subsubsection{Struktura videa}\label{makingof:resolve:structure}
 Každé video se skládá z mluveného slova, hudby, simulace noční oblohy, scénáře a titulků. Základem celého videa je mluvené slovo, kterému se přizpůsobují všechny další složky. Mluvené slovo vložím na časovou osu a rozdělím na jednotlivé odstavce tak, aby mezery byly v momentech, kdy bude potřebný přechod v simulaci oblohy. Poté začnu na časovou osu rovnat jednotlivé obrazové části.
 
 V úvodu videa diváky přivítáme a stručně jim představíme obsah dílu. Zároveň je upozorníme, že informace uvedené ve videu neplatí po celém světě, ale pouze kolem 50.\@ rovnoběžky severní šířky a pouze v uvedeném časovém rozmezí. Zde také shrneme krátce podmínky pro pozorování noční oblohy v daném měsíci. V této části obrazová stopa ukazuje časosběry s astronomickou tématikou, nejčastěji pohledy na noční oblohu nebo výhledy z Mezinárodní vesmírné stanice. Tato videa nevznikají ze simulací ale jedná se o videa všeobecně dostupná.
 
-V hlavní části videa využíváme jako podklad mluveného slova simulace ze Stellaria.
+V hlavní části videa využíváme jako podklad mluveného slova simulace ze Stellaria, které jsme získali postupem popsaným výše. V této části jsou na obloze zobrazeny jednotlivé hvězdy, jejich spojnice, které vytvářejí tvary souhvězdí, a umělecké ztvárnění souhvězdí, korespondující s jejich názvy. Takto divák může lépe souhvězdí nalézt, když se podívá na skutečnou noční oblohu. 
 
-První scéna začíná bez jakýchkoliv souhvězdích viditelných a~postupně jak video pokračuje, objevují se postupně další souhvězdí. Následující scény se drží velice podobné struktury, která je vidět na obrázku~\ref{img:timeline}. Na začátku, a~ve speciálních případech i~uprostřed scény, se vyskytují animace, které jsou na snímku označeny číslem 1. V~průběhu scény je jako podklad využit statický snímek, vygenerovaný v~sekci~\ref{makingof:stellarium}. Tento snímek je označený číslem 2 a~slouží jako základ každé scény, přes který jsou poté překryty snímky souhvěždí (3) a~objektů hlubokého vesmíru (5). Pro větší názornost využíváme tzv.\ pointer (4), animovaný klip pulzijícího čtverce se zaoblenými rohy, jež zvýrazňuje část obrazu o~kterém právě pojednává scénář, jehož vizuální reprezentace je vidět jako obrázek~\ref{img:pointer}. Někdy je třeba zvýraznit zvolený objekt hlubokého vesmíru na úkor pozadí, které zrovna v~daném momentě není důležité. V~tomto snímku je tento tzv. Adjustment Clip vidět pod číslem 6. Zvuková část se po většinu času skládá ze dvou stop: hlasové stopy (7) a~hudební stopy (8). Hlasová stopa se nachází primárně mimo animace, kdy její dominantní místo nahradí hudba, která je po dobu přechodů zesílena.
+Během představování každého souhvězdí jsou popisovány i zajímavé objekty hlubokého vesmíru, které lze v oblasti daného souhvězdí nalézt. Mezi snadno viditelné objekty hlubokého vesmíru se řadí hvězdokupy, mlhoviny a galaxie. Existují i další objekty hlubokého vesmíru, jako například černé díry nebo aktivní galaktická jádra, která ale nemůžeme snadno pozorovat bez speciálního vybavení (např.\ zrcadlový dalekohled GTC na Kanárských ostrovech, dalekohled VLT --- Very Large Telescope na poušti Atacama v Chile nebo Hubblův vesmírný teleskop), a z tohoto důvodu je v našich videích neuvádíme.
+
+Souhvězdí a~objekty hlubokého vesmíru jsou ve videu chronologicky řazeny podle nejlepšího času pozorování v průběhu noci --- od západu k~východu slunce. 
+
+V následující části zmiňujeme nejdůležitější astronomické události, které v průběhu měsíce pravidelně nastávají. Jedná se například o meteorické roje, noční svítící oblaka a pravidelné charakteristiky podmínek pozorování (např.\ v zimě jsou na pozorování nejlepší podmínky, ale je chladno a doporučujeme proto divákům s tím počítat, nežli vyrazí do mrazivé noci nepřipraveni). Tento koncept videa umožňuje jej pravidelně používat každý rok v daném měsící bez nutnosti jakýchkoliv úprav.
+
+\subsubsection{Časová osa scény}\label{makingof:resolve:merging}
+Následující obrázek zachycuje uspořádání jednotlivých částí scény na časové ose.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{timeline_annotated.eps}
-	\caption{Snímek jedné ze scén z finálního videa. Každá důležitá stopa má přiřazené číslo. Vysvětleno v~oddílu~\ref{makingof:resolve:merging}}\label{img:timeline}
+	\caption{Časová osa jedné ze scén. Každá důležitá část scény má přiřazené číslo.}\label{img:timeline}
 \end{figure}
+Číslo 1 označuje animace, při kterých se obraz pohybuje, a až na vyjímky neobsahuje mluvený komentář. Animace slouží k posunu pohledu pozorovatele do jiné části oblohy, čímž pozorovatel neztratí orientaci na obloze. 
+
+Číslem 2 je označen statický snímek, který slouží jako podklad pro danou scénu. Číslo 3 označuje snímky jednotlivých souhvězdí. Oba tyto typy snímků vznikají samostatně zároveň s generováním předchozí animace v programu Stellarium.
+
+Číslo 4 označuje tzv.\ pointer. Jedná se o animovaný klip zářícího výrazného pulzujícího čtverce se zaoblenými rohy. Tím je zvýrazněn objekt o~kterém právě pojednává scénář. Pointer je zobrazen na obrázku~\ref{img:pointer}. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.5\textwidth]{pointer.eps}
-	\caption{Animace zvaná pointer, využívaná pro upřesnění pozice objektu, o~kterém v~daném momentě mluví scénář.}\label{img:pointer}
+	\caption{Pointer --- animace využívaná pro upřesnění pozice objektu, o~kterém v~daném momentě hovoří.}\label{img:pointer}
 \end{figure}
 
-Nad scénou se nachází pět až šest stop s~titulky. Tyto stopy využíváme nejen pro standardní využití ve formě titulků v~Češtině a~někdy i~v Angličtině, ale využíváme je i~jako prostor pro citování zdrojů obrazových materiálů, opravě chyb v~již vydaném videu, poznámky a~doplnění obsahu od editora a~stopa s~informacemi a~zdrojích hudby. Tento postup využíváme hlavně kvůli jednoduchosti tvorby titulků a~možnosti tyto titulky skrýt a~nebýt jimi rušen. 
+Číslo 5 označuje snímky objektů hlubokého vesmíru, které jsou do snímku uvedeny nejdříve pomalu na místě, kde se objekt na obloze nachází. Jakmile se komentář zmíní o daném objektu, spustí se animace, která obrázek zvětší, dá divákovi několik sekund na prohlédnutí obrázku, a poté obrázek zase stejným způsobem zmizí.
 
-Souhvězdí a~objekty hlubokého vesmíru jsou řazeny podle nejlepšího času pozorování od západu slunce k~východu slunce. Poté nastává část, kde zmíníme nejdůležitější události, které v~průběhu měsíce nastávají. Na tomto místě zmiňujeme meteorické roje a~atmosférické i~vesmírné úkazy, které se mohou v~průběhu měsíce ukázat.
+Číslem 6 jsou označeny tzv. Adjustment Clips. Těmito klipy mohu ovlivnit všechny části scény, které se nachází na časové ose pod nimi. V případě situace ukázané na obrázku~\ref{img:timeline} se jedná o ztmavení všech nižších vrstev, aby lépe vynikla fotografie \textcolor{red}{zkontrolovat velká písmena} Velké mlhoviny v Orionu, kterou pořídil náš scénárista Daniel Kurtin.
+
+Číslem 7 je označena stopa s mluveným slovem a číslem 8 je označena hudební stopa. Obě stopy běží většinou souběžně. V místech mluveného komentáře je hlasitost hudební stopy potlačena, aby bylo mluvené slovo zřetelně slyšet.
+
+Čísla 9 --- 13 označují titulkové stopy. Jejich počet a využití se mění podle požadavků daného projektu. Tyto stopy využíváme nejen pro standardní využití ve formě titulků v~češtině a~někdy v~angličtině, ale využíváme je i~jako prostor pro citování zdrojů obrazových materiálů, pro opravu chyb v~již vydaném videu, pro poznámky a~doplnění obsahu od editora a~pro stopu s~informacemi o~zdrojích hudby. Tento přístup využíváme zejména kvůli jednoduchosti tvorby titulků, možnosti jejich úpravy po vydání videa a~možnosti je skrýt, pokud jimi nechci být rušen. 
 \subsubsection{Mixování obrazové části}
 Záběry jsou vrstveny přes sebe pomocí metody Lighten. Tato metoda pro každý pixel vypočítá barvu podle rovnice $[\max(r_1, r_2), \max(g_1, g_2), \max(b_1, b_2)]$,\fcite{wiki:blend} kde tato množina představuje červený, zelený a~modrý kanál v~tomto pořadí. Toto umožňuje světlým obrázkům souhvězdí překrývat se, aniž by bylo třeba odstraňovat u~každého pozadí. Tento způsob mixování také využívám pro fotografie objektů hlubokého vesmíru. 
 
