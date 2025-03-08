@@ -47,6 +47,6 @@ foreach ($i in $loop) {
 
 $a += [pscustomobject]@{PartName = "<total>"; CharsInText = $totalchars; NormPagesFinished = "{0:f2}" -f ($totalchars/1800); PercentFinished = "{0:p}" -f (($totalchars) / (1800*20))}
 
-$v = ($a | Format-Table -AutoSize)
+$v = $a | Format-Table -AutoSize
 $OutputEncoding = [Text.Encoding]::ASCII
 $v
