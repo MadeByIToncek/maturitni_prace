@@ -242,9 +242,34 @@ Získané fotografie následně upravuji pomocí software Zoner Photo Studio X, 
 \subsection{Mixování zvukové části}
 Ve zvukové části jsou na sebe vrstvy stopy hudby a~mluveného slova. Hudbu vybírám ze seznamu hudby v~knihovně YouTube a~ze seznamu skladeb, využívaných softwarem SpaceEngine. SpaceEngine je simulátor vesmíru, zaměřen spíše na jiné pohledy na vesmír než ze Země. Jeho hudební knihovna obsahuje skladby které mají evokovat atmosféru různých míst ve vesmíru. Při vybírání hudby k videu je základním kritériem, aby hudba diváka nijak nerušila a zároveň dotvářela atmosféru celého videa. Jako úvodní hudbu v~našich videích používáme skladbu \textit{Beyond --- Patrick Patrikios} ze zvukové knihovny YouTube. V~hlavní části se objevují skladby z software SpaceEngine, jako například \textit{Space G Lydian --- Alfred Potter}, \textit{The Blithering Heights --- Akira} a~\textit{A peaceful Place --- Goodstreet}. V závěru videa využíváme skladbu \textit{Instant Crush --- Corbyn Kites} znovu ze zvukové knihovny YouTube.
 \section{Historie popularizace astronomie}
-Astronomie se začala rozvíjet, stejně jako většina ostatních věd, již ve starověku. V různých kulturách byla využívána k různým účelům. \textcolor{red}{egyptská hustá věc, náboženství} \fcite{arxiv:egypt}. Mořeplavci používali od pradávna pozice hvězd k navigaci na moři, například pomocí sextantu. \textcolor{red}{rejpnout si do astrologie}. \textcolor{red}{aristotelovy myšlenky, ptolemaios, země kulatá}.
+Astronomie se začala rozvíjet, stejně jako většina ostatních věd, již ve starověku. V různých kulturách byla využívána k různým účelům. Již v starověkém Egyptě využívalo lidstvo hvězd k určení času. Byly nalezeny tabulky, které popisovaly 18 skupin hvězd (z nich bylo používáno pouze 12), zvaných dekanty. Každá skupina hvězd vycházela každý den o 40 minut později. Den roku tak spolu s výškou nad obzorem umožňovala získat relativně přesný čas i v noci. Byla také poprvé určena délka roku na 365 dní~\fcite{arxiv:egypt}. 
+
+V Egyptě také poprvé popsali souhvězdí noční oblohy. Tato souhvězdí nemají stejné názvy jako naše současná souhvězdí. Místo toho názvy souhvězdí reflektují Egyptské náboženství. Například na současném místě souhvězdí Oriona popisovali souhvězdí kráčejícího muže~\fcite{enim:egypt}.
+
+Studiem Egyptské astronomie se také můžeme dozvědět mnoho o současné astronomii. Z map, které se dochovaly ze starověkého egypta se dá vyčíst, že v této době nebyla Polárka ($\alpha$ Ursae Minoris) nejbližší hvězdou k severnímu oblohovému pólu. Místo Polárky tuto funkci plnila hvězda Thuban ($\alpha$ Draconis) ze souhvězdí Draka. 
+
+Dále porovnáním tehdejších a dnešních map můžeme zmapovat pohyb jednotlivých hvězd po obloze. Nejlepší ukázkou tohoto chování je hvězda Arcturus ($\alpha$ Bootis). Na obrázcích níže můžete porovnat tvar tohoto souhvězdí v roce 4000 př.n.l.\ a 2025 n.l.\@ Hvězda Arcturus je v tomto směru nejznámnější ukázkou, díky její vysoké jasnosti na naší obloze.
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{.45\textwidth}
+	  \centering
+	  \includegraphics[width=1\linewidth]{-4000.png}
+	  \captionof{figure}{Pohled na souhvězdí Pastýře v roce -4000. Simulace: Stellarium}~\label{fig:test1}
+	\end{minipage}%
+	\hspace{.8cm}
+	\begin{minipage}{.45\textwidth}
+	  \centering
+	  \includegraphics[width=1\linewidth]{2025.png}
+	  \captionof{figure}{Pohled na souhvězdí Pastýře v roce 2025. Simulace: Stellarium}~\label{fig:test2}
+	\end{minipage}
+\end{figure}
+
+
 
 Ve středověku byly tyto vědomosti znepřístupněny náboženstvím a náboženskými dogmaty. \textcolor{red}{koperník, galileo, brahe?, kepler, newton, hvězdárny}
+
+Mořeplavci používali od pradávna pozice hvězd k navigaci na moři, například pomocí sextantu. \textcolor{red}{rejpnout si do astrologie}. \textcolor{red}{aristotelovy myšlenky, ptolemaios, země kulatá}.
 
 K výraznému rozvoji došlo až během vědecko-technické revoluce s dostupností optiky a elektroniky a znovu pak s začátkem letů do vesmíru. Knihy, časopisy, fotografie, filmy, rádio, televize, planetária robo.
 
@@ -334,7 +359,7 @@ Prvním momentem, kdy se celá produkce změnila byla scéna v~čase 2:55, kdy j
 	\caption{Demonstrace problematické scény z Prosincových Astronomických desetiminutovek.}\label{prac:ac12_1}
 \end{figure}
 
-Ačkoliv mi tento postup umožňoval větší kontrolu nad výsledným záběrem v editoru. Jeho nepraktičnost se ukázala v momentě, kdy jsem byl nucen scénu mírně pootočit kvůli chybě ve výpočtu data ve skriptu a byl jsem tedy nucen masku, kterou jsem již pečlivě naanimoval pro každé souhvězdí zvlášť během dalšího přechodu celou předělat.
+Ačkoliv mi tento postup umožňoval větší kontrolu nad výsledným záběrem v editoru. Jeho nepraktičnost se ukázala v momentě, kdy jsem byl nucen scénu mírně pootočit kvůli chybě ve výpočtu času ve skriptu a byl jsem tedy nucen masku, kterou jsem již pečlivě naanimoval pro každé souhvězdí zvlášť během dalšího přechodu celou předělat.
 
 V ten moment jsem se zamyslel, jestli by to nešlo udělat nějak lépe a napadlo mě, vyexportovat ze Stellaria jen potřebná souhvězdí a zbytek skrýt. Ukázalo se, že Stellarium má pro tento účel marker \textit{FlagIsolateSelected}, který umožní Stellariu renderovat pouze souhvězdí, která předem vyberu pomocí \textit{core.\-select\-Constellation\-By\-Name(name)}. Tato malá změna z pohledu diváka mi ušetřila nespočet hodin animování masek pro celé video. %chktex 36
 
@@ -350,7 +375,7 @@ Tohoto efektu dosáhneme pomocí míchání metodou Lighten, kde zvolíme nejjas
 
 Poslední krok je zarovnání snímku na místo, kde se na obloze nachází v realitě a pomalé prolnutí, využívající neschopnosti diváka všimnout si pomalých změn.
 
-Tento typ zpracování obrázků dostal podporu od zbytku týmu a nyní ho využíváme pro většinu objektů hlubokého vesmíru.
+Tento typ zpracování obrázků dostal podporu od zbytku týmu a nyní ho využíváme pro zobrazení většiny objektů hlubokého vesmíru.
 
-Další výraznou novinkou bylo zahrnutí titulků do videa. Nejen že obsahují popisky
+Další výraznou novinkou bylo zahrnutí titulků do videa. Nejen že obsahují přepis celého videa ze scénáře, ale u tohoto projektu jsem sem začal dávat zdroje všeho obsahu, který ve videích využíváme. Takto jsou informace vždy připojeny přímo k místu, kde se dané dílo nachází.
 \end{document}
