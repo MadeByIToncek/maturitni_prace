@@ -27,6 +27,7 @@
 \usepackage{hyperref}
 \usepackage{csquotes}
 \usepackage{xurl}
+\usepackage{chngcntr}
 
 \DeclareBibliographyCategory{skipbibliography}
 \DeclareCiteCommand{\fcite}[\mkbibfootnote]
@@ -43,6 +44,8 @@
 \clubpenalty = 10000
 \widowpenalty = 10000
 \displaywidowpenalty = 10000
+
+\counterwithin*{section}{part}
 
 \begin{document}
 \begin{titlepage}
@@ -129,15 +132,15 @@ Po dokončení scénáře jde na řadu samotné nahrávání audiostopy. Proces 
 Terka standardně nahrává audiostopy v~domácím nahrávacím studiu. Zde má k~dispozici standardní zpěvový mikrofon a~zvukový panel, který je připojen k~počítači. Zvuk poté nahrává v~Audacity a~odesílá v~plné kvalitě. 
 
 Tentokrát byla nucena z~časových důvodů nahrávat audiostopu na mobilní telefon na kolejích v~Praze. Kombinace těchto faktorů způsobila, že prosincové video obsahuje výrazný šum na pozadí nahrávky, který není možné úplně odstranit. Tento problém se nám podařilo vyřešit v~následujícím videu pomocí \enquote{peřinového bunkru}, který značnou část šumu na pozadí odfiltroval. I~bez speciálních zvukových panelů, které jsou pro tento účel instalovány ve studiích, se nám podařilo výrazně zvýšit kvalitu zvukové stopy. Porovnání šumu na zvukových stopách je znázorněno frekvenční analýzou na obrázku níže.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=.4\textwidth]{fourier.png}
+	\includegraphics[width=.8\textwidth]{fourier.png}
 	\caption{Porovnání šumové stopy projektu Rok 2025 (vlevo, využit \enquote{peřinový bunkr} pro snížení hladiny šumu) a~projektu Prosinec (vpravo).}\label{img:fourier}
 \end{figure}
 \subsection{Animování oblohy v~programu Stellárium}\label{makingof:stellarium}
 Celý proces animování začíná prací se scénářem. Ze scénáře se vypíše seznam jednotlivých scén a~přechodů mezi nimi. Pro tento úkol jsem si vytvořil speciální formát zápisu, který obsahuje vše, co je potřebné k~vytvoření jednotlivých přechodů ve videu. Viz tabulka níže.
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\begin{tabularx}{\linewidth}{lc*{5}{>{\RaggedRight\arraybackslash}X}}
 	\toprule
@@ -436,7 +439,21 @@ Nejzajímavější údálostí roku 2025 bude úplné zatmění měsíce, pozoro
 
 12.\ září poté proběhne další přechod Měsíce přes otevřenou hvězdokupu Plejády. 21.\ září poté proběhne zatmění slunce na Antarktidě.
 
-Zbývající příspěvky jsou již o meteorických rojích Orinid, Leonid a Geminid, jejichž maxima proběhnou 21.\ října, 17.\ listopadu a 13.\ prosince v tomto pořadí.
+Poslední segment videa se věnuje trojici meteroických rojů, které můžeme pozorovat na konci roku. 21.\ října nás čeká maximum meteorického roje Orionid, 17.\ listopadu nás čeká maximum roje Leonid a 13.\ prosince nás čeká maximum roje Geminid.
 
 Náhled celého scénáře je k dispozici na \href{https://mp.itoncek.space/redirect/scenar-2025}{mp.itoncek.space/redirect/scenar-2025}.
+
+
+Projekt Rok 2025 přinesl výraznou změnu ve způsobu zachytávání animací. Nově jsem využil plných skriptovacích schopností Stellaria a přenechal pro některé přechody animace přímo Stellariu. 
+
+Místo zadání počátečních a koncových souřadnic mi nyní stačí zadat název objektů, které mají být veprostřed záběru na začátku a konci přechodu. Tento krok mi znovu umožňuje zjednodušit celé přípravy videa, kompletně odstraňující potřebu přepisovat souřadnice ze systému do skriptu. 
+
+Tato změna mi také umožnila vytvořit nové přenosy, které do té doby nebyly možné. V tomto videu často využívám metodu \textit{slideTrack()}, která každý snímek zamíří středem na zvolený objekt, udržujíce ho takto ve středu snímku. %chktex 36
+
+\section{Závěr}
+Práce na tomto projektu mě již dlouhodobě učí řešení různých problémů a inovaci v kreativním procesu. Během práce na této maturitní práci jsem se naučil řádně číst dokumentaci existujícího software a kompletní využití veškerých dostupných způsobů ovládání Stellaria. Naučil jsem se také práci se systémem \LaTeX{}, pomocí kterého jsem napsal celou tuto práci.
+
+Ačkoliv jsem tuto práci dokončil, plánuji v projektu AstroCrew nadále pokračovat. Do budoucna plánuju několik zlepšení procesu, jako například plně interaktivní aplikaci, která umožní rychlejší a jednodušší tvorbu animací za pomoci Stellaria. 
+
+Produkce videí se v blízké budoucnosti zpomalí, spolu s odchodem všech členů AstroCrew na vysoké školy a čas se pro nás stane vzácností. I přes to se pokusíme vydávat nepravidelně nové projekty.
 \end{document}
