@@ -1,6 +1,6 @@
 param([string]$targetDir="./publish/redirect/") 
 
-mkdir -Force $targetDir
+New-Item -Force $targetDir -ItemType "directory"
 
 $template = '<!DOCTYPE HTML>
 <html lang="en-US">
