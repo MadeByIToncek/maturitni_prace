@@ -42,7 +42,9 @@ jobs:
           mv maturitni_prace.pdf ./publish/index.pdf
           echo "<button onclick=\"pdf()\">PDF</button><button onclick=\"stats()\">Stats</button><script>function pdf() {window.location.href = \"./index.pdf\";}function stats() {window.location.href = \"./stats.txt\";}</script>" > ./publish/index.html
       - name: Generate stats.txt
-        run: pwsh ./count.ps1 > ./publish/stats.txt
+        run: pwsh ./count.ps1 ./publish/stats.txt
+      - name: Generate redirects
+        run: pwsh ./redirect.ps1
       - name: Upload to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:

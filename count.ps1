@@ -1,3 +1,5 @@
+param([string]$targetFile="") 
+
 $val = "maturitni_prace.tex"
 "Counting character counts for $val"
 
@@ -49,4 +51,10 @@ $a += [pscustomobject]@{PartName = "<total>"; CharsInText = $totalchars; NormPag
 
 $v = $a | Format-Table -AutoSize
 $OutputEncoding = [Text.Encoding]::ASCII
-$v
+
+if($targetFile -eq "") {
+    $v
+} else {
+    
+    $v | Out-File -FilePath $targetFile -Force
+}
