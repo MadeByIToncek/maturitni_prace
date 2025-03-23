@@ -20,5 +20,6 @@ $dict = @{
 foreach ($key in $dict.Keys) {
     $content = $template -f $($dict[$key])
     
+    "Writing $($targetDir + $key + ".html")"
     $content | Out-File -FilePath $($targetDir + $key + ".html") -Force
 }

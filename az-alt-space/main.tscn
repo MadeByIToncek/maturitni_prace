@@ -164,32 +164,34 @@ autostart = true
 [node name="Animace 1" type="Button" parent="CanvasLayer"]
 offset_left = 10.0
 offset_top = 316.0
-offset_right = 156.0
+offset_right = 82.0
 offset_bottom = 347.0
-text = "Lineární přechod"
+text = "Lineární"
 
 [node name="Animace 2" type="Button" parent="CanvasLayer"]
-offset_left = 160.0
+offset_left = 87.0
 offset_top = 316.0
-offset_right = 333.0
+offset_right = 186.0
 offset_bottom = 347.0
-text = "Kvadratický přechod"
+text = "Kvadratický"
 
 [node name="Animace 3" type="Button" parent="CanvasLayer"]
-offset_left = 337.0
+offset_left = 192.0
 offset_top = 316.0
-offset_right = 488.0
+offset_right = 261.0
 offset_bottom = 347.0
-text = "Kvartický přechod"
+text = "Kubický"
 
 [node name="Animace 4" type="Button" parent="CanvasLayer"]
-offset_left = 492.0
+offset_left = 266.0
 offset_top = 316.0
-offset_right = 610.0
+offset_right = 384.0
 offset_bottom = 347.0
-text = "Expo. přechod"
+text = "Exponenciální"
 
 [node name="Camera3D" type="Camera3D" parent="."]
+current = true
+fov = 67.3801
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmbo5")

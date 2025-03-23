@@ -40,6 +40,9 @@
 \title{Tvorba astronomických videí}
 \renewcommand{\baselinestretch}{1.5} 
 
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
 
 \begin{document}
 \begin{titlepage}
@@ -80,7 +83,6 @@ V \hspace{0.05cm} \rule[-3pt]{4cm}{0.5pt} \hspace{0.05cm} dne \hspace{0.05cm} \r
 \newpage
 \part{Teoretická část}
 \section{Úvod}
-%\textcolor{red}{(Nejsem si úplně jistý, jak by měla tato sekce vypadat, budu rád za Váš názor.)}
 Tvorbou astronomických videí se zabývám více než tři roky, a~to jako editor ve skupině AstroCrew. Skupinu AstroCrew tvoří tři členové:
 
 \begin{itemize}
@@ -154,8 +156,6 @@ Největším problémem pro využití Stellaria v~produkci videí je fakt, že j
 
 Prvním krokem v~tomto procesu je získání souřadnic jednotlivých snímků. Do tohoto momentu mám pouze informace o~začátku a~konci přechodu. Tyto informace obsahují azimut, výšku, přiblížení pohledu, datum a~čas. Z~těchto dat dále sestavím vektory $\vec{s}$ a~$\vec{e}$, které označují začátek a~konec přechodu v~pětidimenzionálním prostoru. 5D prostor je velice obtížné si představit, proto ho na~chvíli zjednodušíme do 2D prostoru. Zde jedna dimenze bude představovat azimut a~druhá výšku nad obzorem. 
 
-\textcolor{red}{osy v~demu}
-
 Pro názornost tohoto konceptu tohoto konceptu jsem vyvinul nástroj, dostupný na \url{https://2ddemo.mp.itoncek.space}. V~levém horním rohu je zobrazena kartézská soustavu souřadnic, kde osa $x$ (znázorněná červeně) představuje azimut a~osa $y$ (znázorněná zeleně) představuje výšku nad horizontem. Umístění bílého křížku na grafu znázorňuje aktuální střed pohledu na obloze. Tím jsou definovány dvě dimenze z~pěti.
 
 Zbývající tři dimenze představuje přiblížení pohledu, čas a~datum simulace. V~tomto pětidimenzionálním prostoru se nachází každý snímek ze všech novějších videí AstroCrew. Každý snímek z~obou projektů, které jsou tématem této práce, lze popsat pomocí souřadnic v~tomto prostoru.
@@ -164,15 +164,13 @@ Nyní máme matematicky definované počáteční a~koncové souřadnice snímk�
 \[c = (1-t)*a + t * b\] 
 Tato rovnice převede každou hodnotu mezi $t=0$ (začátek přechodu) a~$t=1$ (konec přechodu) na hodnotu, která leží na úsečce $\overleftrightarrow{AB}$. Bod $A$ definujeme jako počáteční bod a~bod $B$ jako koncový bod přechodu. Tato rovnice se často nazývá \textit{lerp(a,b,t)} a~tuto definici budu po zbytek kapitoly používat. Poté pomocí lineární interpolace vypočítám vektory jednotlivých snímků v~přechodu.%chktex 36
 
-\textcolor{red}{přejmenovat přechody v~anim, přejmenovat quart na cub}
-
-Výsledná animace je ve~výše zmíněném nástroji označena tlačítkem \enquote{Lineární přechod}. Animace je zde sice plynulá, ale začátky a~konce jsou trhané. Proto vstupní faktor $t$ nejdříve přetransformuji, abych se zbavil trhavých pohybů, které mohou být pro diváky nepříjemné. 
+Výsledná animace je ve~výše zmíněném nástroji označena tlačítkem \enquote{Lineární}. Animace je zde sice plynulá, ale začátky a~konce jsou trhané. Proto vstupní faktor $t$ nejdříve přetransformuji, abych se zbavil trhavých pohybů, které mohou být pro diváky nepříjemné. 
 
 Je několik možností, jak tuto pomocnou transformaci provést. Jednou variantou je kvadratický přechod. Zde faktor $t$ upravíme pomocí rovnice:
 \[u = lerp({t}^{2}, inv({inv}^{2}(t)), t)\]
-Kde \textit{inv(x) = 1-x} a~výsledný faktor $u$ použijeme dále ve standardní lineární interpolaci.  V~ukázce je tato animace označena tlačítkem \enquote{Kvadratický přechod}. Výsledný přechod začíná a~končí výrazně plynuleji, dosáhli jsme tedy toho, co jsme potřebovali. %chktex 36 %chktex 9 %chktex 15
+Kde \textit{inv(x) = 1-x} a~výsledný faktor $u$ použijeme dále ve standardní lineární interpolaci.  V~ukázce je tato animace označena tlačítkem \enquote{Kvadratický}. Výsledný přechod začíná a~končí výrazně plynuleji, dosáhli jsme tedy toho, co jsme potřebovali. %chktex 36 %chktex 9 %chktex 15
 
-Dalšími variantami jsou přechody kubický a~exponenciální. Oba začínají sice plynuleji než kvadratický, ale ve střední části cesty naberou výrazně vyšší rychlost, která je v~případě pozorování oblohy nepraktický a~může být potenciálně nepříjemná pro diváky. Pro jiné aplikace může být naopak lepší volbou. Například se využívá v~uživatelských rozhraních na mobilních telefonech, nebo dynamické zobrazení animovaných sloupcových grafů (například volebních preferencí nebo výsledků hlasování). Další nevýhodou kubického a~exponenciálního přechodu je relativní složitost vyjádření pomocí jedné funkce. Tyto přechody jsou často simulovány spojením dvou funkcí v~$t=\frac{1}{2}$. Obě dvě animace je možné najít ve výše zmíněném nástroji pod tlačítky \enquote{Kubický přechod} a~\enquote{Expo.\ přechod}.
+Dalšími variantami jsou přechody kubický a~exponenciální. Oba začínají sice plynuleji než kvadratický, ale ve střední části cesty naberou výrazně vyšší rychlost, která je v~případě pozorování oblohy nepraktický a~může být potenciálně nepříjemná pro diváky. Pro jiné aplikace může být naopak lepší volbou. Například se využívá v~uživatelských rozhraních na mobilních telefonech, nebo dynamické zobrazení animovaných sloupcových grafů (například volebních preferencí nebo výsledků hlasování). Další nevýhodou kubického a~exponenciálního přechodu je relativní složitost vyjádření pomocí jedné funkce. Tyto přechody jsou často simulovány spojením dvou funkcí v~$t=\frac{1}{2}$. Obě dvě animace je možné najít ve výše zmíněném nástroji pod tlačítky \enquote{Kubický} a~\enquote{Exponenciální}.
 
 Nyní máme trajektorii definovanou matematicky pomocí kvadratické funkce. Na trajektorii tedy můžeme rozmístit požadované množství snímků. Pro většinu animací v~našich videích používám 500 snímků, které tvoří 10 sekund finálního videa.
 
@@ -233,7 +231,7 @@ Následující obrázek zachycuje uspořádání jednotlivých částí scény n
 \subsubsection{Mixování obrazové části}
 Další úpravy obrazové části jsou zaměřeny na vrstvení jednotlivých částí scény přes sebe. Bez těchto úprav není možné skrz jednotlivé vrstvy vidět, co je pod nimi. Například by bylo vidět pouze jedno souhvězdí nebo objekty hlubokého vesmíru by byly na černém pozadí místo jejich prolínání s~atmosférou.
 
-Záběry jsou vrstveny přes sebe pomocí metody Lighten přímo v~programu \textcolor{red}{zkontrolovat velká písmena} Davinci Resolve, která pro každý pixel obrázku vybere nejjasnější barvu ze všech vrstev na daném snímku videa. Toto umožňuje vzájemné překrytí obrázků souhvězdí a~objektů hlubokého vesmíru, aniž by bylo třeba odstraňovat u~každého pozadí. 
+Záběry jsou vrstveny přes sebe pomocí metody Lighten přímo v~programu DaVinci Resolve, která pro každý pixel obrázku vybere nejjasnější barvu ze všech vrstev na daném snímku videa. Toto umožňuje vzájemné překrytí obrázků souhvězdí a~objektů hlubokého vesmíru, aniž by bylo třeba odstraňovat u~každého pozadí. 
 
 Úprava pro objekty hlubokého vesmíru probíhá následovně:
 
@@ -377,6 +375,8 @@ Dalším segment videa se zaměřuje na jarní souhvězdí. Tato souhvězdí jso
 
 V posledním segmentu videa ukážeme meteorické roje, které mají svoje maximum právě v~daném měsíci. V~případě prosince se jedná pouze o~meteorický roj Geminid, pojmenovaných po souhvězdí Blíženců (lat. Gemini), ve kterém leží radiant\footnote{Bod na obloze, ze kterého meteory zdánlivě vylétají.} tohoto roje.
 
+Celý scénář je k dispozici na \href{https://mp.itoncek.space/redirect/scenar-prosinec}{mp.itoncek.space/redirect/scenar-prosinec}.
+
 Prosincové video je druhé video na našem kanále, které bylo renderováno pomocí metody skriptování Stellaria a~první skriptované video ze série Astronomických desetiminutovek. S~sebou přineslo mnoho změn v~procesu animace, zvláště pak v~oblasti editování. 
 
 U předchozího videa ze série Astronomických desetiminutovek jsem ještě využíval celooblohových panorám a~pluginu Gopro FX Reframe. Prosincové Astronomické desetiminutovky byly tudíž novým milníkem v~produkci.
@@ -408,6 +408,7 @@ Poslední krok je zarovnání snímku na místo, kde se na obloze nachází v~re
 Tento typ zpracování obrázků dostal podporu od zbytku týmu AstroCrew a~nyní ho využíváme pro zobrazení většiny objektů hlubokého vesmíru.
 
 Další výraznou novinkou bylo zahrnutí titulků do videa. Nejen že obsahují přepis celého videa ze scénáře, ale u~tohoto projektu jsem sem začal dávat zdroje všeho obsahu, který ve videích využíváme. Takto jsou informace vždy připojeny přímo k~místu, kde se dané dílo nachází.
+
 \section{Co nás čeká na obloze v~roce 2025?}
 Tento projekt se řadí do série projektů, které nemají sice oficiální název, ale interně tuto sérii nazýváme \enquote{Co nás čeká na obloze}. Tato videa mají diváka provést zajímavými událostmi v~nadcházejícím roce.
 
@@ -427,6 +428,15 @@ Trojici zatmění zakončí 1.\ dubna večer zákryt Plejád Měsícem, kdy Měs
 	\caption{Náhledový obrázek pro video \enquote{Co nás čeká na obloze v roce 2025?}. Kompozice snímku měsíce ze Stellaria a snímku Plejád z Observatoře Palomar. Měsíc a Plejády nemají stejné měřítko.}\label{prac:nahledovka-v2}
 \end{figure}
 
-22.\ dubna proběhne maximum Lyrid. Tento rok bude Měsíc skryt pod obzorem a nebude rušit pozorování. Následuje dlouhá pauza bez zajímavých úkazů. Poté nás čekají Perseidy, tentokrát s úplňkovým Měsícem 
+22.\ dubna proběhne maximum Lyrid. Tento rok bude Měsíc skryt pod obzorem a nebude rušit pozorování. Následuje dlouhá pauza bez zajímavých úkazů. Poté nás čekají Perseidy, tentokrát s úplňkovým Měsícem, který prakticky znemožní pozorování.
 
+Zároveň s Perseidami proběhne 12.\ srpna konjunkce Venuše a Jupiteru, která se poté zopakuje 20.\ srpna, kdy se k dvojici planet přidá i Měsíc. 
+
+Nejzajímavější údálostí roku 2025 bude úplné zatmění měsíce, pozorovatelné od nás z České Republiky. 7.\ září večer vyjde v půl osmé večer již zatmělý měsíc na oblohu. Po setmění, krátce před devátou hodinou, začne Měsíc ze zemského stínu vycházet a částečná fáze skončí před desátou.
+
+12.\ září poté proběhne další přechod Měsíce přes otevřenou hvězdokupu Plejády. 21.\ září poté proběhne zatmění slunce na Antarktidě.
+
+Zbývající příspěvky jsou již o meteorických rojích Orinid, Leonid a Geminid, jejichž maxima proběhnou 21.\ října, 17.\ listopadu a 13.\ prosince v tomto pořadí.
+
+Náhled celého scénáře je k dispozici na \href{https://mp.itoncek.space/redirect/scenar-2025}{mp.itoncek.space/redirect/scenar-2025}.
 \end{document}

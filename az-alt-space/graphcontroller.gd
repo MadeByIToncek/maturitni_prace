@@ -98,7 +98,7 @@ func changeToAnim2():
 	anim(Tween.TRANS_QUAD);
 	
 func changeToAnim3():
-	anim(Tween.TRANS_QUART);
+	anim(Tween.TRANS_CUBIC);
 	
 func changeToAnim4():
 	anim(Tween.TRANS_EXPO);
@@ -112,9 +112,9 @@ func anim(trans:Tween.TransitionType):
 		$"../Animace 4".disabled = true;
 		var tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(trans);
 		
-		camera.rotation_degrees = Vector3(10.92857, 166.9655,0);
+		camera.rotation_degrees = Vector3(30.85714, 103.6552, 0.0);
 		
-		tween.tween_property(camera,"rotation_degrees",Vector3(83.25282, -160.2069,0),10);
+		tween.tween_property(camera,"rotation_degrees",Vector3(81.64286, -133.4483, 0.0),10);
 		tween.finished.connect(func():
 			animating = false;
 			$"../Animace 1".disabled = false;
