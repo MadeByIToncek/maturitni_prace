@@ -10,7 +10,8 @@
 \usepackage[
   backend=biber,
   style=iso-numeric,
-  maxbibnames=99
+  maxbibnames=99, 
+  style=verbose
 ]{biblatex}
 \addbibresource{maturitni_prace.bib}
 \usepackage{graphicx}
@@ -29,7 +30,9 @@
 \usepackage{xurl}
 \usepackage{chngcntr}
 
-\newcommand{\link}[2]{\href{#1}{\textit{#2}}}%
+\definecolor{link-color}{rgb}{.30,.30,.30}
+
+\newcommand{\link}[2]{\href{#1}{\textcolor{link-color}{\textbf{#2}}}}%
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 
 \DeclareBibliographyCategory{skipbibliography}
@@ -47,6 +50,10 @@
 \clubpenalty = 10000 %chktex 1
 \widowpenalty = 10000 %chktex 1
 \displaywidowpenalty = 10000 %chktex 1
+
+\makeatletter
+\@addtoreset{footnote}{part}
+\makeatother
 
 \counterwithin*{section}{part}
 
@@ -106,7 +113,7 @@ Hotová videa následně publikujeme na našem YouTube kanálu.
 
 Základním cílem skupiny AstroCrew je zpřístupnit široké veřejnosti zajímavé úkazy na obloze pomocí animací a~videí. Diváci mají poté lepší přehled o~umístění jednotlivých úkazů na noční obloze a~mohou je následně lépe nalézt.
 
-Spolupracujeme s~planetáriem v~liberecké iQLandii. Na jejich akcích \enquote{Večery pod hvězdami} jsou naše nová videa promítána přímo v~planetáriu jako součást oficiálního programu. Kromě videí o~astronomii zpřístupňujeme široké veřejnosti i~kosmonautiku. V~tomto odvětví se věnujeme primárně živým přenosům startů raket, poslední dobou nejvíce programu Starship \todo{vysvětlit}.
+Spolupracujeme s~planetáriem v~liberecké iQLandii. Na jejich akcích \enquote{Večery pod hvězdami} jsou naše nová videa promítána přímo v~planetáriu jako součást oficiálního programu. Kromě videí o~astronomii zpřístupňujeme široké veřejnosti i~kosmonautiku. V~tomto odvětví se věnujeme primárně živým přenosům startů raket.
 
 Téma tvorby astronomických videí jsem si vybral zejména kvůli jeho obsáhlosti. V~rámci produkce videí ve skupině AstroCrew programuji animační nástroje, a následně pomocí nich animuji scénu. Výsledná data nakonec kompletuji ve finální video. V~této maturitní práci se zaměřuji zejména na moji část produkce videa. Ostatní části tvorby videa, které nezpracovávám já, jsou zastoupeny pouze stručně a obsahově pro doplnění kontextu. 
 \section{Postup vytváření videa}\label{makingof}
@@ -115,11 +122,11 @@ Téma připravovaného videa je většinou rozhodnuto s~dostatečným předstihe
 
 Dalším krokem v~produkci videa je sepsání scénáře naším scénáristou Danem Kurtinem. Scénář videa určuje, jak bude celé video navenek působit, jaké informace bude obsahovat a~v~jakém sledu a~hlavně jakým způsobem budou tyto informace divákovi podány. I~dobrý nápad může totiž rychle ztroskotat, pokud není promyšleno, jak bude tento nápad prezentován.
 
-Do našich videí, která se zaměřují hlavně na úkazy na obloze, se dají podklady shánět v~odborných článcích, na amatérských profilech na sociálních sítích nebo přímo v~programech simulujících umístění objetků na noční obloze. Tyto programy, jako je například Stellarium \todo{vysvětlit stellarium}, vytvářejí na základě vědeckých měřeních opravdu věrný obrázek budoucnosti. 
+Do našich videí, která se zaměřují hlavně na úkazy na obloze, se dají podklady shánět v~odborných článcích, na amatérských profilech na sociálních sítích nebo přímo v~programech simulujících umístění objetků na noční obloze. Tyto programy, jako je například Stellarium\footnote{program na simulaci noční oblohy, více informací v kapitole \ref{makingof:stellarium}}, vytvářejí na základě vědeckých měřeních opravdu věrný obrázek budoucnosti. 
 
 Tento fakt se nám hodí při našich videích, která mají shrnovat nejdůležitější úkazy v~budoucím roce. V~tomto případě vybíráme většinou patnáct až dvacet úkazů, které může pozorovat i~úplný amatér a~to většinou bez použití jakékoliv techniky. Dalším naším typickým obsahem videí je souhrn každoročního dění na obloze v~jednotlivých měsících roku. Způsob vytváření scénáře je dost podobný v~obou případech --- pokaždé chronologicky prezentujeme to, co bude vidět v~noci na obloze.
 
-Jsou samozřejmě úkazy, které se opakují pravidelně každý rok. To jsou například meteorické roje, letní noční svítící oblaka nebo třeba viditelnost zvířetníkového světla \todo{vysvětlit}. Informace o~těchto událostech jsou většinou snadno dohledatelné. Pokaždé je však nutné zjistit, zda v~období, kdy k~této události dojde, nebude na obloze rušit Měsíc svým svitem. Ten totiž při meteorických rojích může úplně znemožnit pozorování. I~na to je dobré diváka upozornit, protože viditelnost těchto úkazů se může rok od roku měnit.
+Jsou samozřejmě úkazy, které se opakují pravidelně každý rok. To jsou například meteorické roje, letní noční svítící oblaka nebo třeba viditelnost zvířetníkového světla\footnote{prach nacházející se v okolí ekliptiky sluneční soustavy, který je pod jistými světelnými podmínkami vidět na noční obloze jako světlý pruh nad východním a západním obzorem}. Informace o~těchto událostech jsou většinou snadno dohledatelné. Pokaždé je však nutné zjistit, zda v~období, kdy k~této události dojde, nebude na obloze rušit Měsíc svým svitem. Ten totiž při meteorických rojích může úplně znemožnit pozorování. I~na to je dobré diváka upozornit, protože viditelnost těchto úkazů se může rok od roku měnit.
 
 Další kategorií jsou úkazy, které jsou poměrně běžné, ale neopakují se každý rok ve stejný čas. Někdy k~nim zkrátka dojde a~bez podrobnějších informací není možné vědět, kdy nastanou. Do této kategorie spadají například zatmění Slunce a~Měsíce, přílety jasnějších komet nebo třeba opozice planet (období, kdy je určitá planeta z~našeho pohledu na opačné straně než Slunce, a~jeví se tak jasněji). Zmínku o~těchto jevech můžeme najít již poměrně dopředu v~různých odborných článcích, které nám dokáží významně usnadnit práci s~hledáním. Z~česko-slovenských webových stránek to může být jmenovitě třeba stránka \link{https://www.astro-novinky.eu}{astro-novinky.eu} a~ze zahraničních například stránka \link{https://in-the-sky.org}{in-the-sky.org}, která obsahuje i~velmi pěkně zpracovaný kalendář úkazů na několik let dopředu.
 
@@ -127,7 +134,7 @@ Existuje spousta krásných úkazů, o~kterých se ale dopředu moc nepíše. Pr
 
 Náš scénárista Daniel Kurtin mi k~tvorbě scénáře řekl: \enquote{Začnu vždy tím, že si vyberu nějaký objekt. Typicky začínám Merkurem. Následně si zrychlím čas a~pozoruji, jestli se Merkur nepřiblíží k~nějaké jiné planetě nebo k~Měsíci, či zda se dokonce nesetká s~nějakým jasnějším objektem vzdáleného vesmíru, například nějakou hvězdokupou. Stejně postupuji i~u~zbylých planet a~nakonec u~Měsíce. Tento proces je skutečně užitečný, protože lze vždy nalézt navíc něco, o~čem jsem před tím ještě žádnou zmínku nenašel.}
 
-Poslední skupinou jsou pak jevy, které předpovědět nelze. V~našich videích je proto nijak konkrétně nezmiňujeme, protože zkrátka nevíme, kdy nebo zda vůbec, nastanou. Zpravidla jde o~přílety velmi jasných komet, které astronomové mohou objevit i~třeba jen pár týdnů před průletem kolem Země,  viditelnost slunečních skvrn na Slunci a~s~tím i~spojený výskyt polárních září, dále pak jasné bolidy nebo stále přibývající přelety \enquote{vláčků} satelitů Starlink \todo{vysvětlit}. V~budoucnu se možná i~na tento typ videí, ve kterých vysvětlíme podstatu takových jevů, zaměříme. 
+Poslední skupinou jsou pak jevy, které předpovědět nelze. V~našich videích je proto nijak konkrétně nezmiňujeme, protože zkrátka nevíme, kdy nebo zda vůbec, nastanou. Zpravidla jde o~přílety velmi jasných komet, které astronomové mohou objevit i~třeba jen pár týdnů před průletem kolem Země,  viditelnost slunečních skvrn na Slunci a~s~tím i~spojený výskyt polárních září, dále pak jasné bolidy nebo stále přibývající přelety \enquote{vláčků} satelitů Starlink\footnote{satelity konstelace satelitů Starlink jsou vypouštěny v dávkách po přibližně 20 satelitech, které se několik dní drží relativně blízko u sebe. Na obloze poté vypadají jako \enquote{vláček} satelitů, cestujících po obloze.}. V~budoucnu se možná i~na tento typ videí, ve kterých vysvětlíme podstatu takových jevů, zaměříme. 
 
 Jakmile Dan tento seznam cílů získá, začne k~nim dohledávat podrobnější informace. Nejlepším zdrojem pro základní informace o~objektech je opět Stellarium. Zde může najít čas viditelnosti a~pozici na obloze. U~některých událostí se tyto parametry výrazně liší v~závislosti na poloze pozorovatele. V~takovýchto příkladech udáváme informace pro Prahu a~zdůrazňujeme, že by si měl každý pozorovatel vyhledat údaje pro svoji přesnou lokaci. Další údaje jako například původ nebo vzhled daného jevu lze nalézt již na klasických webových stránkách typu Wikipedia, nebo v~klasické literatuře či v~odborných časopisech typu Vesmír.
 
@@ -138,9 +145,9 @@ Neméně důležitou stránkou je i~způsob, jakým je daná informace sdělena.
 \subsection{Příprava zvukových podkladů}\label{makingof:audio-prep}
 Po dokončení scénáře jde na řadu samotné nahrávání audiostopy. Proces nahrávání je obvykle uzpůsobený pro každý samostatný projekt. Pro obě videa, řešená touto projektovou maturitní prací, byl proces tvorby zvuku víceméně shodný, až na malé detaily. 
 
-Terka standardně nahrává audiostopy v~domácím nahrávacím studiu. Zde má k~dispozici standardní zpěvový mikrofon a~zvukový panel, který je připojen k~počítači. Zvuk poté nahrává v~Audacity \todo{vysvětlit Audacity} a~odesílá v~plné kvalitě ke zpracování. 
+Terka standardně nahrává audiostopy v~domácím nahrávacím studiu. Zde má k~dispozici standardní zpěvový mikrofon a~zvukový panel, který je připojen k~počítači. Zvuk poté nahrává v~Audacity\footnote{jednoduchý open-source program určený pro nahrávání a střih zvuku.} a~odesílá v~plné kvalitě ke zpracování. 
 
-Tentokrát byla nucena z~časových důvodů nahrávat audiostopu na mobilní telefon na kolejích v~Praze. Kombinace těchto faktorů způsobila, že prosincové video obsahuje výrazný šum na pozadí nahrávky, který není možné úplně odstranit. Tento problém se nám podařilo vyřešit v~následujícím videu pomocí \enquote{peřinového bunkru} \todo{dovysvětlit}, který značnou část šumu na pozadí odfiltroval. I~bez speciálních zvukových panelů, které jsou pro tento účel instalovány ve studiích, se nám podařilo výrazně zvýšit kvalitu zvukové stopy. Porovnání šumu na zvukových stopách je znázorněno frekvenční analýzou na obrázku níže.
+Tentokrát byla nucena z~časových důvodů nahrávat audiostopu na mobilní telefon na kolejích v~Praze. Kombinace těchto faktorů způsobila, že prosincové video obsahuje výrazný šum na pozadí nahrávky, který není možné úplně odstranit. Tento problém se nám podařilo vyřešit v~následujícím videu pomocí \enquote{peřinového bunkru}\footnote{\enquote{peřinový bunkr} představuje jednoduchou strukturu, postavenou z peřiny, pod kterou je možné nahrávat bez ozvěny a se sníženou úrovní ruchů.}, který značnou část šumu na pozadí odfiltroval. I~bez speciálních zvukových panelů, které jsou pro tento účel instalovány ve studiích, se nám podařilo výrazně zvýšit kvalitu zvukové stopy. Porovnání šumu na zvukových stopách je znázorněno frekvenční analýzou na obrázku níže.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{fourier.png}
@@ -162,9 +169,9 @@ Celý proces animování začíná prací se scénářem. Ze scénáře se vypí
 	\caption{Ukázka tabulky s~informacemi o~scénách}\label{tab:scenar}
 \end{table}		
 
-Většina animací, které se v~těchto videích nachází, byly vytvořeny pomocí simulačního programu Stellarium.\@ \enquote{Tento program je open-source (jeho zdrojový kód je volně dostupný) a~jeho primárním účelem je realistická simulace noční oblohy při pohledu očima nebo dalekohledem}\fcite{stellarium:homepage}. Stellarium poskytuje širokou nabídku programovatelných rozhraní. Pro účely této práce využívám webový server, přes který lze instanci Stellaria ovládat z~prohlížeče a~skriptovací rozhraní, které umožňuje interakci se Stellariem pomocí programovacího jazyka, založeného na standardu ECMAScript\fcite{wiki:ecmascript} (využívaného například jazykem JavaScript).
+Většina animací, které se v~těchto videích nachází, byly vytvořeny pomocí simulačního programu Stellarium.\@ \enquote{Tento program je open-source (jeho zdrojový kód je volně dostupný) a~jeho primárním účelem je realistická simulace noční oblohy při pohledu očima nebo dalekohledem}\footcite{stellarium:homepage}. Stellarium poskytuje širokou nabídku programovatelných rozhraní. Pro účely této práce využívám webový server, přes který lze instanci Stellaria ovládat z~prohlížeče a~skriptovací rozhraní, které umožňuje interakci se Stellariem pomocí programovacího jazyka, založeného na standardu ECMAScript\fcite{wiki:ecmascript} (využívaného například jazykem JavaScript).
 
-Největším problémem pro využití Stellaria v~produkci videí je fakt, že jeho tvůrci nepočítali s~jeho využitím pro tvorbu videí. Neexistuje tam například funkce, která by Stellariu řekla \enquote{Otoč se plynule na tyto souřadnice a~přitom nahraj video}. Jedinou možností, jak získat tuto animaci, je export každého samostatného snímku jako separátního souboru a~tyto jednotlivé snímky následně spojit do finálního videa pomocí nástroje jako FFmpeg \todo{vysvětlit}. 
+Největším problémem pro využití Stellaria v~produkci videí je fakt, že jeho tvůrci nepočítali s~jeho využitím pro tvorbu videí. Neexistuje tam například funkce, která by Stellariu řekla \enquote{Otoč se plynule na tyto souřadnice a~přitom nahraj video}. Jedinou možností, jak získat tuto animaci, je export každého samostatného snímku jako separátního souboru a~tyto jednotlivé snímky následně spojit do finálního videa pomocí nástroje jako FFmpeg\footnote{FFMpeg je v základu nástroj na převádění videí mezi jednotlivými formáty uložení. Podporuje i rozdělení videa na jednotlivé snímky, sestavení jednotlivých snímků zpět do videa, vysílání videa přes internet nebo jeho zachytávání.}. 
 
 Prvním krokem v~tomto procesu je získání souřadnic jednotlivých snímků. Do tohoto momentu mám pouze informace o~začátku a~konci přechodu. Tyto informace obsahují azimut, výšku, přiblížení pohledu, datum a~čas. Z~těchto dat dále sestavím vektory $\vec{s}$ a~$\vec{e}$, které označují začátek a~konec přechodu v~pětidimenzionálním prostoru. 5D prostor je velice obtížné si představit, proto ho na~chvíli zjednodušíme do 2D prostoru. Zde jedna dimenze bude představovat azimut a~druhá výšku nad obzorem. 
 
@@ -196,13 +203,18 @@ Během přípravy této maturitní práce do sady funkcí přibyla nová kategor
 
 Jednou z~dalších nových funkcí je \textit{travelTrack()}, která vytvoří plynulý přechod mezi nebeskými souřadnicemi dvou objektů bez nutnosti zadávání jejich souřadnic do logiky skriptu. Další novou funkcí je \textit{slideTrack()}, která sleduje jeden vybraný objekt a~zajistí, že je na každém snímku přesně uprostřed. % chktex 36
 
-Pro ukládání takto vygenerovaných snímků využívám formát TIFF, který mi poskytuje vysoce kvalitní data, komprimována bezztrátově pomocí algoritmu LZW \todo{dovysvětlit}.\@ Jeden takový snímek má rozlišení \(3840\times2160\) pixelů a~velikost 5--7MB.\@ Dohromady má jeden přechod mezi scénami velikost přibližně 7GB.\@ Pro celé video by to znamenalo velikost přes 200GB.\@ Aktuálně nevlastním žádný disk s~dostatečnou kapacitou a~rychlostí pro střih videa těchto rozměrů. Proto v~posledním kroku příprav převedu každý přechod do formátu ProRes, který mi umožňuje snížit velikost na pouhých 10GB na celý projekt, za cenu minimální ztráty na kvalitě. 
+Pro ukládání takto vygenerovaných snímků využívám formát TIFF, který mi poskytuje vysoce kvalitní data, komprimována bezztrátově pomocí algoritmu LZW\footnote{Algoritmus Lempel-Ziv-Welch je univerzální algoritmus na bezztrátovou kompresi dat.  ---~\cite{wiki:lzw}}.
+
+Jeden takový snímek má rozlišení \(3840\times2160\) pixelů a~velikost 5--7MB.\@ Dohromady má jeden přechod mezi scénami velikost přibližně 7GB.\@ Pro celé video by to znamenalo velikost přes 200GB.\@ Aktuálně nevlastním žádný disk s~dostatečnou kapacitou a~rychlostí pro střih videa těchto rozměrů. Proto v~posledním kroku příprav převedu každý přechod do formátu ProRes, který mi umožňuje snížit velikost na pouhých 10GB na celý projekt, za cenu minimální ztráty na kvalitě. 
 
 Při kompilaci jednotlivých snímků do videí nastavuji finální snímkovací frekvenci projektu, jíž je pro AstroCrew 50 sn./s. Tato snímkovací frekvence je v~souladu s~frekvencí evropské elektrické sítě, standardy Evropské unie a~příjemná pro oko diváka.
 
-Pro video o~\enquote{Úkazech na obloze v~roce 2025} jsem zvolil trochu jiný postup. Přechody ukládám ve formátu JPEG2000 \todo{dopsat detaily}, který používá ztrátovou kompresi. Celé video je tak možné na konci procesu vyrendrovat znova a~opravit případné drobné detaily, které ve videu mohly vziknout v~průběhu jeho tvorby.\fcite{jpeg2000}
+Pro video o~\enquote{Úkazech na obloze v~roce 2025} jsem zvolil trochu jiný postup. Přechody ukládám ve formátu JPEG2000. JPEG2000 je standard, vyvinutý skupinou Joint Photographic Experts Group\fcite{jpeg2000}, který má za úkol rozšířit schopnosti standardu JPEG 1\fcite{jpeg1}. JPEG2000 poskytuje bezztrátovou i ztrátovou kompresi, až 16384 barevných kanálů, obrázky o rozměrech v terapixelech. Využívá se například v kinech jako součást standardu DCP, archivaci nebo ve formátu MJPEG2000 jako kodek pro přenášení streamu videa při produkci\fcite{jpeg2000:usage}. 
+
+Výhodou JPEG2000 pro tento projekt je možnost nastavení úrovně komprese a vysoká rychlost proti již tak rychlému standardu JPEG 1. Video je tak možné na konci procesu celé vyrendrovat znova a~opravit případné drobné detaily, které ve videu mohly vziknout v~průběhu jeho tvorby.
 \subsection{Kompletace videa v~programu DaVinci Resolve}\label{makingof:resolve}
-\todo{popsat rychle resolv}
+DaVinci resolve je stříhací software od firmy Blackmagicdesign. Kromě střihu videa lze v DaVinci Resolve tvořit 2D a 3D efekty, upravovat barvy videa, mixovat hudbu a exportovat ve všech formátech které můžete jako filmař potřebovat. DaVinci Resolve Studio (placená verze DaVinci Resolve) je mířená na pokročilé uživatele a řádná filmová studia. Blackmagicdesign poskytuje také verzi DaVinci Resolve, která je kompletně zdarma za cenu několika chybějících funkcí, které ale normální uživatel příliš často nepoužije.\fcite{resolve:manual}
+
 \subsubsection{Struktura videa}\label{makingof:resolve:structure}
 Každé video se skládá z~mluveného slova, hudby, simulace noční oblohy, scénáře a~titulků. Základem celého videa je mluvené slovo, kterému se přizpůsobují všechny další složky. Mluvené slovo vložím na časovou osu a~rozdělím na jednotlivé odstavce tak, aby mezery byly v~momentech, kdy bude potřebný přechod v~simulaci oblohy. Poté začnu na časovou osu rovnat jednotlivé obrazové části.
 
@@ -210,7 +222,7 @@ V úvodu videa diváky přivítáme a~stručně jim představíme obsah dílu. Z
 
 V hlavní části videa využíváme jako podklad mluveného slova simulace ze Stellaria, které jsme získali postupem popsaným výše. V~této části jsou na obloze zobrazeny jednotlivé hvězdy, jejich spojnice, které vytvářejí tvary souhvězdí, a~umělecké ztvárnění souhvězdí, korespondující s~jejich názvy. Takto divák může lépe souhvězdí nalézt, když se podívá na skutečnou noční oblohu. 
 
-Během představování každého souhvězdí jsou popisovány i~zajímavé objekty hlubokého vesmíru, které lze v~oblasti daného souhvězdí nalézt. Mezi snadno viditelné objekty hlubokého vesmíru se řadí hvězdokupy, mlhoviny a~galaxie. Existují i~další objekty hlubokého vesmíru, jako například černé díry nebo aktivní galaktická jádra, která ale nemůžeme snadno pozorovat bez speciálního vybavení, například zrcadlový dalekohled GTC (\todo{Gran Canario Telescope}) na Kanárských ostrovech, dalekohled VLT (Very Large Telescope) na poušti Atacama v~Chile nebo Hubblův vesmírný teleskop, a~z~tohoto důvodu je v~našich videích neuvádíme.
+Během představování každého souhvězdí jsou popisovány i~zajímavé objekty hlubokého vesmíru, které lze v~oblasti daného souhvězdí nalézt. Mezi snadno viditelné objekty hlubokého vesmíru se řadí hvězdokupy, mlhoviny a~galaxie. Existují i~další objekty hlubokého vesmíru, jako například černé díry nebo aktivní galaktická jádra, která ale nemůžeme snadno pozorovat bez speciálního vybavení, například zrcadlový dalekohled GTC (Gran Telescopio Canarias) na Kanárských ostrovech, dalekohled VLT (Very Large Telescope) na poušti Atacama v~Chile nebo Hubblův vesmírný teleskop, a~z~tohoto důvodu je v~našich videích neuvádíme.
 
 Souhvězdí a~objekty hlubokého vesmíru jsou ve videu chronologicky řazeny podle nejlepšího času pozorování v~průběhu noci --- od západu k~východu slunce. 
 
@@ -317,7 +329,7 @@ Ačkoliv tento proces byl jednoduchý na provedení, byl náročný na čas. Pok
 	\caption{Ukázka našeho prvního videa.}\label{img:brezen}
 \end{figure}
 
-Do této éry patří ještě video s~názvem \textquote{Jak pozorovat zatmění Měsíce 16.5.2022}, které vybočuje svojí tématikou. Vydali jsme jej 13. 5. 2022 jako návod na pozorování nadcházejícího zatmění Měsíce. Toto video značí přechod k~další éře, protože neobsahuje ani jeden záběr ze Stellaria. Skládá se primárně ze záběrů zatmění měsíce a~animace vygenerované pomocí systému Space Engine. Ačkoliv toto video má největší počet shlédnutí na našem YouTube kanálu, má relativně nízký dopad na náš YouTube kanál, protože většina těchto shlédnutí je ze stránek astro.cz a~seznam\-zpravy.cz \todo{link}, kam toto video nasdílel Martin Gembec, vedoucí planetária v~iQLandii.
+Do této éry patří ještě video s~názvem \textquote{Jak pozorovat zatmění Měsíce 16.5.2022}, které vybočuje svojí tématikou. Vydali jsme jej 13. 5. 2022 jako návod na pozorování nadcházejícího zatmění Měsíce. Toto video značí přechod k~další éře, protože neobsahuje ani jeden záběr ze Stellaria. Skládá se primárně ze záběrů zatmění měsíce a~animace vygenerované pomocí systému Space Engine. Ačkoliv toto video má největší počet shlédnutí na našem YouTube kanálu, má relativně nízký dopad na náš YouTube kanál, protože většina těchto shlédnutí je ze stránek seznam\-zpravy.cz\footnote{Článek je dostpuný na \link{https://mp.itoncek.space/redirect/seznamzpravy-clanek}{itoncek.space/redirect/seznamzpravy-clanek}}, kam toto video nasdílel Martin Gembec, vedoucí planetária v~iQLandii.
 \subsection{Éra spěchu --- Červen a~Červenec 2022}
 Červnové a~červencové Astronomické desetiminutovky byly stříhány ve velikém spěchu. S~příchodem prázdnin se množství volného času, který jsem měl k~dispozici na stříhání se snížilo, a~tudíž bylo třeba produkci optimalizovat. V~této době jsem také začal přecházet do nového stříhacího programu, zvaného DaVinci Resolve, který využívám doteď. Tato změna prostředí produkce znamenala, že videa musela být jednodušší na produkci a~tudíž kvalita lehce upadla. Ukázku finálního videa jsem připojil v~přílohách jako obrázek~\ref{img:cervenec}.
 
@@ -331,7 +343,7 @@ Tato videa jsou jednoduchá, složená z~časosběrných záběrů se zvukovým 
 \subsection{Renezance Astrocrew --- Únor 2023}
 Únorové video je první, které se dá kategorizovat do skupiny moderních AstroCrew videí. V~této době jsem poprvé začal pracovat se Stellariem jako s~nástrojem pro generování snímků, která jsou později spojovány do videa. Zbavil jsem se tak přímého nahrávání videa, které předtím zabralo výraznou část času produkce.
 
-Základní nápad této metodiky byl jednoduchý: nafotit celooblohovou panorámu, složit jí do jednoho snímku a~ten poté otáčet ve stříhacím programu. V~této době jsem začal tvořit nástroj StellariumPanoramaCreator (dále jen SPC), který se již v~produkci udržel. První verze SPC byla velice jednoduchá. Skript převzal kontrolu nad klávesnicí a~myší mého počítače a~pomocí integrovaného okna přímo ve Stellariu, které umožňovalo zadat azimut a~výšku, postupně nafotilo všech 54 snímků. Z~nich se složila finální panoráma za pomoci programu Hugin \todo{vysvětlit}, který obdržel všechny snímky a~projektový soubor s~informacemi o~pozicích snímků vygenerováný při běhu SPC.\@
+Základní nápad této metodiky byl jednoduchý: nafotit celooblohovou panorámu, složit jí do jednoho snímku a~ten poté otáčet ve stříhacím programu. V~této době jsem začal tvořit nástroj StellariumPanoramaCreator (dále jen SPC), který se již v~produkci udržel. První verze SPC byla velice jednoduchá. Skript převzal kontrolu nad klávesnicí a~myší mého počítače a~pomocí integrovaného okna přímo ve Stellariu, které umožňovalo zadat azimut a~výšku, postupně nafotilo všech 54 snímků. Z~nich se složila finální panoráma za pomoci programu Hugin\footnote{Hugin je open-source nástroj na spojování jednotlivých snímků, vyfocených ze stejného místa s různými orientacemi, do jedné panorámy. }, který obdržel všechny snímky a~projektový soubor s~informacemi o~pozicích snímků vygenerováný při běhu SPC.\@
 
 Zpracování těchto dat bylo mnohem komfortnější než skládání videí natočených manuálně. Proces stále vyžadoval mnoho práce, než byla získána vstupní data. Tento čas nebylo možno nijak jinak využít, protože při běhu SPC nebylo možné využívat klávesnici ani myš. Nebylo možné ani odkliknout z~okna jinam, protože v~ten moment SPC ovládá klávesnici a~myš. Mohl jsem pouze sedět a~sledovat, co se děje na obrazovce. Snímání jedné panorámy trvalo 10 --- 15 minut. Proto dalším logickým krokem bylo převedení komunikace SPC se Stellariem na pozadí. 
 
@@ -360,6 +372,8 @@ Tímto způsobem bylo vytvořeno video \textquote{Co nás čeká na obloze v~roc
 \part{Praktická část}
 \todo{odkazy na videa}
 \section{Astronomické desetiminutovky --- Prosinec}
+Celé video můžete shlédnout na \link{https://youtu.be/RHS7FwtCN1A}{youtu.be/RHS7FwtCN1A}.
+
 Prosincové Astronomické desetiminutovky jsme stavěli obashově podobně, jako všechny předchozí. Na začátku bylo několik informací spojených s~měsícem prosinec. Například fakt, že v~prosinci jsou nejdelší noci, a~to až 16 hodin dlouhé a~díky tomu můžeme vidět souhvězdí ze všech ročních období. 
 
 Dále video pokračuje popisem letní oblohy, kterou můžeme v~prosinci vidět těsně po západu slunce. Zde můžeme vidět Labuť, Lyru a~Orla, tři souhvězdí, jejichž nejjasnější hvězdy na obloze tvoří asterismus\footnote{Výrazná skupina hvězd, která ale není souhvězdím. Například Velký vůz, Herkulův květináč ve Střelci nebo právě Letní trojúhelník} Letní trojúhelník. Dále poté ukazujeme souhvězdí Herkula, ve kterém se nachází další asterismus, zvaný Herkulův květináč, a~kulová hvězdokupa M13.
@@ -431,6 +445,8 @@ Tento typ zpracování obrázků dostal podporu od zbytku týmu AstroCrew a~nyn�
 Další výraznou novinkou bylo zahrnutí titulků do videa. Nejen že obsahují přepis celého videa ze scénáře, ale u~tohoto projektu jsem sem začal dávat zdroje všeho obsahu, který ve videích využíváme. Takto jsou informace vždy připojeny přímo k~místu, kde se dané dílo nachází.
 
 \section{Co nás čeká na obloze v~roce 2025?}
+Celé video můžete shlédnout na \link{https://youtu.be/Jw2xIb8eS\_U}{youtu.be/Jw2xIb8eS\_U}.
+
 Tento projekt se řadí do série projektů, které nemají sice oficiální název, ale interně tuto sérii nazýváme \enquote{Co nás čeká na obloze}. Tato videa mají diváka provést zajímavými událostmi v~nadcházejícím roce.
 
 Tato série poprvé vznikla na začátku roku 2024 jako malý experiment, který jsme chtěli vyzkoušet a~po úžasném diváckem ohlasu, jsme se rozhodli, že i~v~roce 2025 toto video vytvoříme.

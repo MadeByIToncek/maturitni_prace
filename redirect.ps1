@@ -15,6 +15,7 @@ $template = '<!DOCTYPE HTML>
 $dict = @{
     "scenar-2025"="https://docs.google.com/document/d/e/2PACX-1vSx10LW_SeMqRtRyhHYL3zI7LnhgaVgw1a3t6D2EVU4Zh0Iq6LaUlx51YKy4IOVt-E2h04eo-u33QGu/pub";
     "scenar-prosinec"="https://docs.google.com/document/d/e/2PACX-1vTBlvgLLEHblLn8S7HBlSkbWPlGpZmY5PvLSspYdZJLBPxXRNuVhQaFpxDezOsckXuzV5dF-w_-wUoB/pub";
+    "seznamzpravy-clanek" = "https://www.seznamzpravy.cz/clanek/domaci-zivot-v-cesku-v-pondeli-lide-z-ceska-spatri-castecne-zatmeni-mesice-nastane-casne-rano-202296";
 }
 
 foreach ($key in $dict.Keys) {
